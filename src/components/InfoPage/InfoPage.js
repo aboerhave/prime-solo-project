@@ -6,9 +6,9 @@ import React from 'react';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 const InfoPage = () => (
-  <div>
-    <p>Info Page</p>
-  </div>
+    <div>
+         <p>Info Page</p>
+    </div>
 );
 
 // If you needed to add local state or other things,
@@ -17,13 +17,13 @@ const InfoPage = () => (
 /*
 class InfoPage extends React.Component {
 
-  render() {
-    return (
-      <div>
-        <p>Info Page</p>
-      </div>
-    )
-  }
+    render() {
+        return (
+            <div>
+                <p>Info Page</p>
+            </div>
+        )
+    }
 }
 */
 export default InfoPage;
