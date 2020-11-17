@@ -1,7 +1,7 @@
 import {put, takeEvery, takeLatest} from 'redux-saga/effects';
 import axios from 'axios';
 
-// function to get all the genres from database
+// function to get all the parks from database
 function* getParks() {
     try {
         console.log('in getParks function');
