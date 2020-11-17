@@ -24,8 +24,18 @@ class AttractionsPage extends Component {
         return (
             <div>
                 <h3>parks id is {id} </h3>
+                <h3>{this.props.store.singlePark.name}</h3>
                 <ul>
                     {/* put list of attractions here */}
+                    {this.props.store.attractions.map((attraction) => {
+                        return(
+                            <li key={attraction.id} >
+                                {attraction.name}
+                                <button>🤍</button>
+                                <button>🧡</button>
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         );
