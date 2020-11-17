@@ -3,12 +3,12 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
-create table "users" (
+create table "user" (
     "id" serial primary key,
     "username" varchar (80) unique not null,
-    "full_name" varchar (255),
     "password" varchar (255) not null
 );
+
 
 select * from "users";
 
@@ -50,7 +50,7 @@ create table visits_attractions (
 
 insert into parks (name, city, state)
 values ('Cedar Point', 'Sandusky', 'Ohio'),
-('Disney''Animal Kingdom', 'Orlando', 'Florida'),
+('Disney''s Animal Kingdom', 'Orlando', 'Florida'),
 ('Disney''s Hollywood Studios', 'Orlando', 'Florida'),
 ('Epcot', 'Orlando', 'Florida'),
 ('Magic Kingdom', 'Orlando', 'Florida'),
