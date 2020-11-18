@@ -16,7 +16,7 @@ router.get('/on', (req, res) => {
     pool.query(queryText, [req.user.id]).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
-        console.log('error in get favorites request');
+        console.log('error in get favorites request', error);
         res.sendStatus(500);
     });
 });
@@ -34,7 +34,7 @@ router.get('/off', (req, res) => {
     pool.query(queryText, [req.user.id]).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
-        console.log('error in get favorites request');
+        console.log('error in get favorites request', error);
         res.sendStatus(500);
     });
 });
@@ -66,7 +66,7 @@ router.post('/:attractionId', (req, res) => {
         console.log('favorite added');
         res.sendStatus(201);
     }).catch((error) => {
-        console.log('error in adding new favorite');
+        console.log('error in adding new favorite', error);
         res.sendStatus(500);        
     });
 })

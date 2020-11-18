@@ -4,7 +4,7 @@ import axios from 'axios';
 function* addDate(action) {
     try {
         console.log('addDate action.payload', action.payload);
-        // yield axios.post('/api/movie', action.payload);
+        yield axios.post('/api/dates', {date: action.payload});
     }
     catch (error) {
         console.log('error in add Date function', error);
