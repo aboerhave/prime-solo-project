@@ -11,12 +11,20 @@ class AttractionsPage extends Component {
     };
 
     componentDidMount = () => { 
+        // find id for park chosen by user that is in the url parameter
         const { id } = this.props.match.params;
         console.log('id', id);
         // get the one park chosen
         this.props.dispatch({type: 'GET_SINGLE_PARK', payload: id});
+        // get favorite attractions for user
+        this.props.dispatch({type: 'GET_FAVORITES'});
+        this.props.dispatch({type: 'GET_OFF_FAVORITES'});
         // get the attractions at the chosen park
         this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
+    }
+
+    refreshFavorites = () => {
+
         // get favorite attractions for user
         this.props.dispatch({type: 'GET_FAVORITES'});
         this.props.dispatch({type: 'GET_OFF_FAVORITES'});
@@ -43,6 +51,7 @@ class AttractionsPage extends Component {
     handleClickOff = (attractionId) => {
         console.log('clicked', attractionId);
         this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
+        this.refreshFavorites();
     }
 
     handleClickOn = (attractionId) => {
@@ -51,11 +60,14 @@ class AttractionsPage extends Component {
         // and turned it off again so that it exists in the favorites table
         if(this.props.store.offFavorites.some(attraction => attraction.attraction_id === attractionId)){
 
-            this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        }
+            this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        
+            this.refreshFavorites();
+        }
         // it should go here if the attraction has not been set as a favorite by
         // the user yet
         else {
             this.props.dispatch({type: 'SET_ATTRACTION_AS_FAVORITE', payload: attractionId});            
+            this.refreshFavorites();
         }
     }
 
@@ -65,6 +77,7 @@ class AttractionsPage extends Component {
             <div>
                 <h3>parks id is {id} </h3>
                 <h3>{this.props.store.singlePark.name}</h3>
+                
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
