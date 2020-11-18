@@ -17,6 +17,8 @@ class AttractionsPage extends Component {
         this.props.dispatch({type: 'GET_SINGLE_PARK', payload: id});
         // get the attractions at the chosen park
         this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
+        // get favorite attractions for user
+        this.props.dispatch({type: 'GET_FAVORITES'});
     }
 
     render() {
