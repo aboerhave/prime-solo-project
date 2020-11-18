@@ -6,6 +6,7 @@ import parksSaga from './parks.saga';
 import singleParkSaga from './single_park.saga';
 import attractionsSaga from './attractions.saga';
 import favoritesSaga from './favorites.saga';
+import dateSaga from './date.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
         singleParkSaga(),
         attractionsSaga(),
         favoritesSaga(),
+        dateSaga(),
     ]);
 }
