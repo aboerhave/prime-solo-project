@@ -8,7 +8,7 @@ function* getSinglePark(action) {
         
         const singleParkResponse = yield axios.get(`/api/parks/${action.payload}`);
         console.log('singleParkResponse.data', singleParkResponse.data[0]);
-        yield put({type: 'SET_SINGLE_PARK', payload: singleParkResponse.data});
+        yield put({type: 'SET_SINGLE_PARK', payload: singleParkResponse.data[0]});
     }
     catch (error) {
         console.log('error in getParks function', error);        
