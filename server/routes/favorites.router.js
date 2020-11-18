@@ -5,13 +5,31 @@ const router = express.Router();
 
 
 
-router.get('/', (req, res) => {
-    
-    console.log('favorites router request req.user.id', req.user.id);
+router.get('/on', (req, res) => {
+        
+    console.log('favorites router on request req.user.id', req.user.id);
     
     let queryText = `select * from favorites 
     where user_id = $1
     and favorite_status = true;`;
+    
+    pool.query(queryText, [req.user.id]).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log('error in get favorites request');
+        res.sendStatus(500);
+    });
+});
+
+router.get('/off', (req, res) => {
+    
+    console.log('off');
+    
+    console.log('favorites router request off req.user.id', req.user.id);
+    
+    let queryText = `select * from favorites 
+    where user_id = $1
+    and favorite_status = false;`;
     
     pool.query(queryText, [req.user.id]).then((result) => {
         res.send(result.rows);
@@ -35,6 +53,21 @@ router.put('/:attractionId', (req, res) => {
     }).catch((error) => {
         console.log('error in favorite toggle', error);
         res.sendStatus(500);
+    });
+})
+
+router.post('/:attractionId', (req, res) => {
+    console.log('in favorite post attraction id', req.params.attractionId);
+    
+    let queryText = `insert into favorites (user_id, attraction_id, favorite_status)
+    values ($1, $2, true);`
+
+    pool.query(queryText, [req.user.id, req.params.attractionId]).then((result) => {
+        console.log('favorite added');
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log('error in adding new favorite');
+        res.sendStatus(500);        
     });
 })
 

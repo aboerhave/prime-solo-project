@@ -19,6 +19,7 @@ class AttractionsPage extends Component {
         this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
         // get favorite attractions for user
         this.props.dispatch({type: 'GET_FAVORITES'});
+        this.props.dispatch({type: 'GET_OFF_FAVORITES'});
     }
 
     renderFavorite = (attractionId) => {
@@ -34,17 +35,28 @@ class AttractionsPage extends Component {
         }
         else {
             return(
-                <button><span>🤍</span></button>
+                <button onClick={()=>this.handleClickOn(attractionId)}><span>🤍</span></button>
             )
         }
-
-        
-
     }
 
     handleClickOff = (attractionId) => {
         console.log('clicked', attractionId);
         this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
+    }
+
+    handleClickOn = (attractionId) => {
+        console.log('clicked', attractionId);
+        // it should go to this section if the user has previously set it as a favorite
+        // and turned it off again so that it exists in the favorites table
+        if(this.props.store.offFavorites.some(attraction => attraction.attraction_id === attractionId)){
+
+            this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        }
+        // it should go here if the attraction has not been set as a favorite by
+        // the user yet
+        else {
+            this.props.dispatch({type: 'SET_ATTRACTION_AS_FAVORITE', payload: attractionId});            
+        }
     }
 
     render() {
