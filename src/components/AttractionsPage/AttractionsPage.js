@@ -71,13 +71,21 @@ class AttractionsPage extends Component {
         }
     }
 
+    // park id is sent in as parameter from render section
+    toDateSelection = (id) => {
+        console.log('clicked', id);
+        // this sends the page to the date selection component 
+        // with the park id in the parameter
+        this.props.history.push(`/dateSelection/${id}`);
+    }
+
     render() {
         const { id } = this.props.match.params;
         return (
             <div>
                 <h3>parks id is {id} </h3>
                 <h3>{this.props.store.singlePark.name}</h3>
-                
+                <button onClick={()=>this.toDateSelection(id)}>Make a New Record For this Park</button>
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
