@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
     console.log('favorites router request req.user.id', req.user.id);
     
     let queryText = `select * from favorites 
-    where user_id = $1;`;
+    where user_id = $1
+    and favorite_status = true;`;
     
     pool.query(queryText, [req.user.id]).then((result) => {
         res.send(result.rows);

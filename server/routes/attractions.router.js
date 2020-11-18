@@ -6,7 +6,6 @@ const router = express.Router();
 // GET route for getting all of the attractions in the database
 // at the chosen park
 router.get('/:parkId', (req, res) => {
-    console.log('hello1');
     
     console.log('parkId', req.params.parkId);
     

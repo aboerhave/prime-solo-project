@@ -21,6 +21,27 @@ class AttractionsPage extends Component {
         this.props.dispatch({type: 'GET_FAVORITES'});
     }
 
+    renderFavorite = (attractionId) => {
+        console.log('attractionID', attractionId);
+        console.log(this.props.store.favorites);
+        // check to see if this number that is the attractionId is
+        // in the list of attractionIds in the favorite table
+        if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
+            console.log('yes');
+            return(
+                <button><span>🧡</span></button>
+            )
+        }
+        else {
+            return(
+                <button><span>🤍</span></button>
+            )
+        }
+        
+    }
+
+
+
     render() {
         const { id } = this.props.match.params;
         return (
@@ -33,8 +54,11 @@ class AttractionsPage extends Component {
                         return(
                             <li key={attraction.id} >
                                 {attraction.name}
-                                <button>🤍</button>
-                                <button>🧡</button>
+                                <br/>
+                                {attraction.id}
+                                {/* {attraction.} */}
+                                {this.renderFavorite(attraction.id)}
+
                             </li>
                         )
                     })}
