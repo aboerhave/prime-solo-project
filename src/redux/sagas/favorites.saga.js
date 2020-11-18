@@ -1,7 +1,7 @@
 import {put, takeEvery, takeLatest} from 'redux-saga/effects';
 import axios from 'axios';
 
-// function to get all the attractions at the park chosen
+// function to get all the favorites selected by user
 function* getFavorites() {
     try {
         console.log('in getFavoritess function');
@@ -15,10 +15,22 @@ function* getFavorites() {
     }
 }
 
+// function to toggle a favorite
+function* toggleFavorite(action) {
+    try {
+        console.log('in toggleFavorite function with attractionId', action.payload);
+        yield axios.put(`/api/favorites/${action.payload}`);
+    }
+    catch (error) {
+        console.log('error in removeFavorite function', error);        
+    }
+}
+
 function* favoritesSaga() {
     console.log('in favoritesSaga');
     
     yield takeEvery('GET_FAVORITES', getFavorites);
+    yield takeEvery('TOGGLE_FAVORITE', toggleFavorite);
 }
 
 export default favoritesSaga;

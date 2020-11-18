@@ -21,4 +21,21 @@ router.get('/', (req, res) => {
     });
 });
 
+router.put('/:attractionId', (req, res) => {
+    console.log('favorite toggle request attraction id', req.params.attractionId);
+    
+    let queryText = `update favorites 
+    set favorite_status = not favorite_status
+    where user_id = $1
+    and attraction_id = $2;`
+
+    pool.query(queryText, [req.user.id, req.params.attractionId]).then((result) => {
+        res.sendStatus(200);
+        console.log('favorite status toggled');        
+    }).catch((error) => {
+        console.log('error in favorite toggle', error);
+        res.sendStatus(500);
+    });
+})
+
 module.exports = router;

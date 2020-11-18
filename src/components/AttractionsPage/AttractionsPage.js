@@ -29,7 +29,7 @@ class AttractionsPage extends Component {
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
             console.log('yes');
             return(
-                <button><span>🧡</span></button>
+                <button onClick={()=>this.handleClickOff(attractionId)}><span>🧡</span></button>
             )
         }
         else {
@@ -37,10 +37,15 @@ class AttractionsPage extends Component {
                 <button><span>🤍</span></button>
             )
         }
+
         
+
     }
 
-
+    handleClickOff = (attractionId) => {
+        console.log('clicked', attractionId);
+        this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
+    }
 
     render() {
         const { id } = this.props.match.params;
