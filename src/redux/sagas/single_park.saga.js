@@ -20,7 +20,7 @@ function* getParkForVisit(action) {
         console.log('in getParkForVisit function', action.payload);
         const parkVisitResponse = yield axios.get(`/api/visitPark/${action.payload}`);
         console.log('parkVisitResponse', parkVisitResponse.data);
-        yield put({type: 'SET_VISIT_PARK', payload: parkVisitResponse.data});
+        yield put({type: 'SET_VISIT_PARK', payload: parkVisitResponse.data[0]});
         
     }
     catch(error) {
