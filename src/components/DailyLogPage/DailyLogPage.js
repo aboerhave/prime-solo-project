@@ -11,10 +11,19 @@ class DailyLogPage extends Component {
         heading: 'Daily Log Page',
     };
 
+    componentDidMount = () => {
+        this.getPark();
+    }
+
+    getPark = () => {
+        this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
+    }
+
     render() {
         return (
             <div>
                 <h2>{this.state.heading}</h2>
+                <h3>{this.props.store.singleParkVisit.name}</h3>
             </div>
         );
     }

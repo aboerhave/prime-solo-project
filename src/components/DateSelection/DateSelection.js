@@ -78,7 +78,7 @@ class DateSelection extends Component {
                 // const {history} = this.props;
                 // console.log('history', history);
                 
-                this.props.dispatch({type: 'ADD_DATE', payload: {date: inputDate, nav: this}});
+                this.props.dispatch({type: 'ADD_DATE', payload: {date: inputDate, park: this.props.match.params.id}});
             }
         }        
     }
