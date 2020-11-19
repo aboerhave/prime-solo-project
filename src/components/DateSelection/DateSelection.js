@@ -23,6 +23,17 @@ class DateSelection extends Component {
             date: event.target.value
         })
     }
+    
+    componentDidUpdate = () => {
+        console.log('hello');
+        
+        if (Object.keys(this.props.store.singleVisit).length) {
+            this.props.history.push(`/dailyLog/${this.props.store.singleVisit.id}`)
+            
+        }
+        
+        
+    }
 
     handleSubmit = () => {
         console.log(this.state.date);
@@ -61,7 +72,11 @@ class DateSelection extends Component {
             }
             else {
                 // user confirmed date is correct => send to database
-                this.props.dispatch({type: 'ADD_DATE', payload: inputDate});
+                // let dateToSend = {date: inputDate} 
+                // const {history} = this.props;
+                // console.log('history', history);
+                
+                this.props.dispatch({type: 'ADD_DATE', payload: {date: inputDate, nav: this}});
             }
         }        
     }
@@ -75,6 +90,8 @@ class DateSelection extends Component {
                 <input onChange={(event) => this.handleChange(event, 'date')} type="date" id="birthday" name="parkVisitDate" />
                 <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
                 {JSON.stringify(this.state)}
+                <br/>
+                {JSON.stringify(this.props)}
             </div>
         );
     }
