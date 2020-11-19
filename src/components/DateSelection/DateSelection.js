@@ -27,9 +27,11 @@ class DateSelection extends Component {
     componentDidUpdate = () => {
         console.log('hello');
         
+        // this makes the if true if there is a value in the singleVisit reducer 
+        // after a new date is selected, and sends the page to the 
+        // dailyLog component 
         if (Object.keys(this.props.store.singleVisit).length) {
             this.props.history.push(`/dailyLog/${this.props.store.singleVisit.id}`)
-            
         }
         
         
