@@ -5,7 +5,7 @@ import axios from 'axios';
 function* addDate(action) {
     try {
         console.log('addDate action.payload', action.payload);
-        const dateResponse = yield axios.post('/api/dates', {date: action.payload.date});
+        const dateResponse = yield axios.post('/api/dates',  action.payload);
         let dateId = dateResponse.data[0];
         
         console.log('dateResponse', dateId);

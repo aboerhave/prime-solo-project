@@ -8,10 +8,10 @@ const router = express.Router();
 router.post('/', (req, res) => {
     console.log(' in date router post request req.body', req.body);
     
-    let queryText = `insert into park_visits (user_id, date)
-        values ( $1, $2) returning id;`
+    let queryText = `insert into park_visits (user_id, date, park_id)
+        values ( $1, $2, $3) returning id;`
 
-    pool.query(queryText, [req.user.id, req.body.date]).then((result) => {
+    pool.query(queryText, [req.user.id, req.body.date, req.body.park]).then((result) => {
         console.log('date added');
         // res.send(result.rows)
         console.log('result.rows', result.rows[0].id);
