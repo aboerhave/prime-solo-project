@@ -15,9 +15,9 @@ router.get('/:parkVisitId', (req, res) => {
         on parks.id = attractions.park_id
         join park_visits
         on parks.id = park_visits.park_id
-        where park_visits.id = 59;`;
+        where park_visits.id = $1;`;
 
-    pool.query(queryText).then((result) => {
+    pool.query(queryText, [req.params.parkVisitId]).then((result) => {
         console.log('result.rows', result.rows);
         
         res.send(result.rows);

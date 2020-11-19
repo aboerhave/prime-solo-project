@@ -93,7 +93,7 @@ class DateSelection extends Component {
                 <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
                 {JSON.stringify(this.state)}
                 <br/>
-                {JSON.stringify(this.props)}
+                {/* {JSON.stringify(this.props)} */}
             </div>
         );
     }
