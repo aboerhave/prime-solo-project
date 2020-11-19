@@ -6,6 +6,7 @@ import singlePark from './single_park.reducer';
 import attractions from './attractions.reducer';
 import favorites from './favorites.reducer';
 import offFavorites from './off_favorites.reducer';
+import singleVisit from './single_visit.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     attractions,
     favorites,
     offFavorites,
+    singleVisit,
 });
 
 export default rootReducer;

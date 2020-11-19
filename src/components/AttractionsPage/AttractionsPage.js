@@ -24,10 +24,11 @@ class AttractionsPage extends Component {
     }
 
     refreshFavorites = () => {
-
+        const { id } = this.props.match.params;
         // get favorite attractions for user
         this.props.dispatch({type: 'GET_FAVORITES'});
         this.props.dispatch({type: 'GET_OFF_FAVORITES'});
+        this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
     }
 
     renderFavorite = (attractionId) => {
