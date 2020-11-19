@@ -34,6 +34,9 @@ function* toggleFavorite(action) {
     try {
         console.log('in toggleFavorite function with attractionId', action.payload);
         yield axios.put(`/api/favorites/${action.payload}`);
+        // try to get new list off on and off favorites here
+        yield put({type: 'GET_FAVORITES'});
+        yield put({type: 'GET_OFF_FAVORITES'});
     }
     catch (error) {
         console.log('error in removeFavorite function', error);        
@@ -45,6 +48,8 @@ function* setAsFavorite(action) {
     try {
         console.log('in setAsFavorite function with attractionId', action.payload);
         yield axios.post(`/api/favorites/${action.payload}`);
+        yield put({type: 'GET_FAVORITES'});
+        yield put({type: 'GET_OFF_FAVORITES'});
     }
     catch (error) {
         console.log('error in set favorite function', error);

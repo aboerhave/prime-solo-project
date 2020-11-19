@@ -26,9 +26,9 @@ class AttractionsPage extends Component {
     refreshFavorites = () => {
         const { id } = this.props.match.params;
         // get favorite attractions for user
-        this.props.dispatch({type: 'GET_FAVORITES'});
-        this.props.dispatch({type: 'GET_OFF_FAVORITES'});
-        this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
+        // this.props.dispatch({type: 'GET_FAVORITES'});
+        // this.props.dispatch({type: 'GET_OFF_FAVORITES'});
+        // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
     }
 
     renderFavorite = (attractionId) => {
@@ -51,6 +51,8 @@ class AttractionsPage extends Component {
 
     handleClickOff = (attractionId) => {
         console.log('clicked', attractionId);
+        console.log('option1');
+        
         this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
         this.refreshFavorites();
     }
@@ -60,13 +62,16 @@ class AttractionsPage extends Component {
         // it should go to this section if the user has previously set it as a favorite
         // and turned it off again so that it exists in the favorites table
         if(this.props.store.offFavorites.some(attraction => attraction.attraction_id === attractionId)){
-
+            console.log('option2');
+            
             this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        
             this.refreshFavorites();
         }
         // it should go here if the attraction has not been set as a favorite by
         // the user yet
         else {
+            console.log('option3');
+            
             this.props.dispatch({type: 'SET_ATTRACTION_AS_FAVORITE', payload: attractionId});            
             this.refreshFavorites();
         }
@@ -84,6 +89,7 @@ class AttractionsPage extends Component {
         const { id } = this.props.match.params;
         return (
             <div>
+            {/* {JSON.stringify(this.props.store)} */}
                 <h3>parks id is {id} </h3>
                 <h3>{this.props.store.singlePark.name}</h3>
                 <button onClick={()=>this.toDateSelection(id)}>Make a New Record For this Park</button>
