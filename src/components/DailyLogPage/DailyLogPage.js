@@ -71,33 +71,81 @@ class DailyLogPage extends Component {
         }
     }
 
-        render() {
-                const { id } = this.props.match.params;
+    handleIncrementClick = (attractionId) => {
+        console.log('ridden today clicked for attraction id', attractionId);
+        // check to see if the attraction has been ridden yet and is in the attractionsQuantity
+        // reducer to know if post or put is needed
+        if (this.props.store.attractionsQuantity.some(attraction => attraction.attractions_id === attractionId)) {
+            console.log('this is in the already ridden list => can increase');
+            let dataToSend = {
+                parkVisitId: this.props.store.singleParkVisit.id,
+                attraction: attractionId
+            }
+            this.props.dispatch({type: 'ADD_ONE_RIDE', payload: dataToSend});
+        }
+        else {
+            console.log('not ridden yet => need post');
+            let dataToSend = {
+                parkVisitId: this.props.store.singleParkVisit.id,
+                attraction: attractionId
+            }
+            this.props.dispatch({type: 'POST_ONE_RIDE', payload: dataToSend})
+        }
+    }
+
+    renderQuantity = (attractionId) => {
+        // this part puts words on the page to say that the ride has been ridden
+        // only if that quantity is greater than 0
+        if (this.props.store.attractionsQuantity.some(attraction => attraction.attractions_id === attractionId)) {
+            let attractionsQuantityIndex = this.props.store.attractionsQuantity.find(attraction => attraction.attractions_id === attractionId);
+            let attractionsQuantity = attractionsQuantityIndex.times_ridden
+            // this part just does conditional rendering to change 1 time
+            // to multiple times when greater than 1
+            if (attractionsQuantity == 1) {
+
                 return (
-                    <div>
-                    {/* {JSON.stringify(this.props.store)} */}
-                        <h3>{this.props.store.singleParkVisit.name}</h3>
-
-                        <ul>
-                     {/* put list of attractions here */}
-                     {this.props.store.visitAttractions.map((attraction) => {
-                         return(
-                             <li key={attraction.id} >
-                                 {attraction.name}
-                                 <br/>
-                                 {attraction.id}
-                                 {/* {attraction.} */}
-                                 
-                                 {this.renderFavorite(attraction.id)}
-
-                             </li>
-                         )
-                     })}
-                 </ul>
-                    </div>
-                );
+                    <p>1 time ridden today</p>
+                )
+            }
+            else {
+                return (
+                    <p>{attractionsQuantity} times ridden today</p>
+                )
             }
         }
+    }
+
+    render() {
+            const { id } = this.props.match.params;
+            return (
+                <div>
+                    {/* {JSON.stringify(this.props.store)} */}
+                    <h3>{this.props.store.singleParkVisit.name}</h3>
+
+                    <ul>
+                        {/* put list of attractions here */}
+                        {this.props.store.visitAttractions.map((attraction) => {
+                        return(
+                            <li key={attraction.id} >
+                                {attraction.name}
+                                <br/>
+                                {attraction.id}
+                                {/* {attraction.} */}
+                                
+                                {this.renderFavorite(attraction.id)}
+                                {/* put button to increase here and then make button click functionality
+                                different if the attraction is already in the quantity reducer, meaning it has 
+                                already been ridden at least once */}
+                                <button onClick={()=>this.handleIncrementClick(attraction.id)}>Ridden Today</button>
+                                {this.renderQuantity(attraction.id)}
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+        );
+    }
+}
 
 export default connect(mapStoreToProps)(DailyLogPage);
 
@@ -117,41 +165,7 @@ export default connect(mapStoreToProps)(DailyLogPage);
 //     }
 
 
-    // handleClickOff = (attractionId) => {
-    //     console.log('clicked', attractionId);
-    //     console.log('option1');
-        
-    //     this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
-    //     this.refreshFavorites();
-    // }
 
-    // handleClickOn = (attractionId) => {
-    //     console.log('clicked', attractionId);
-    //     // it should go to this section if the user has previously set it as a favorite
-    //     // and turned it off again so that it exists in the favorites table
-    //     if(this.props.store.offFavorites.some(attraction => attraction.attraction_id === attractionId)){
-    //         console.log('option2');
-            
-    //         this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        
-    //         this.refreshFavorites();
-    //     }
-    //     // it should go here if the attraction has not been set as a favorite by
-    //     // the user yet
-    //     else {
-    //         console.log('option3');
-            
-    //         this.props.dispatch({type: 'SET_ATTRACTION_AS_FAVORITE', payload: attractionId});            
-    //         this.refreshFavorites();
-    //     }
-    // }
-
-//     // park id is sent in as parameter from render section
-//     toDateSelection = (id) => {
-//         console.log('clicked', id);
-//         // this sends the page to the date selection component 
-//         // with the park id in the parameter
-//         this.props.history.push(`/dateSelection/${id}`);
-//     }
 
 //     render() {
 //         const { id } = this.props.match.params;

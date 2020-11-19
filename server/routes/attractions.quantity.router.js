@@ -27,6 +27,41 @@ router.get('/:parkVisitId', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+    console.log('stuff sent to attractionsQuantity post', req.body);
+    
+    let queryText = `insert into visits_attractions (park_visit_id, attractions_id)
+    values ($1, $2) returning park_visit_id;`;
 
+    pool.query(queryText,[req.body.parkVisitId, req.body.attraction]).then((result) => {
+        console.log('successfully added attraction to park visit');
+        console.log('result.rows', result.rows[0]);
+        
+        res.send(result.rows[0]);
+    }).catch((error) => {
+        console.log('error in post attractions to park visit quantity', error);
+        res.sendStatus(500);
+    })
+})
+
+router.put('/', (req, res) => {
+    console.log('stuff send to attractionsQuantity put', req.body);
+    
+    let queryText = `update visits_attractions
+    set times_ridden = times_ridden + 1
+    where park_visit_id = $1
+    and attractions_id = $2
+    returning park_visit_id;`;
+
+    pool.query(queryText, [req.body.parkVisitId, req.body.attraction]).then((result) => {
+        console.log('successfully incremented attraction in park visit');
+        res.send(result.rows[0])
+        
+    }).catch((error) => {
+        console.log('error in attractionsQuantity put', error);
+        res.sendStatus(500);
+        
+    })
+})
 
 module.exports = router;
