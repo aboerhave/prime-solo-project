@@ -21,6 +21,16 @@ class SavedVisitsPage extends Component {
         this.props.dispatch({type: 'DELETE_VISIT', payload: visitId});
     }
 
+    handleEdit = (visitId) => {
+        console.log('edit clicked visit Id', visitId);
+        this.props.history.push(`/dailyLog/${visitId}`);
+    }
+
+    handleDisplay = (visitId) => {
+        console.log('display clicked visit Id', visitId);
+        
+    }
+
     render() {
         return (
             <div>
@@ -35,6 +45,11 @@ class SavedVisitsPage extends Component {
                                 <p>{visit.name}</p>
                                 <p>{visit.city}</p>
                                 <p>{visit.state}</p>
+                                {visit.visit_complete ? 
+                                <button onClick={()=>this.handleDisplay(visit.id)}>See Visit Details</button>
+                                :
+                                <button onClick={()=>this.handleEdit(visit.id)}>Edit Visit</button>
+                                }
                                 <button onClick={()=>this.handleDelete(visit.id)}>Delete Entry</button>
                             </li>
                         )

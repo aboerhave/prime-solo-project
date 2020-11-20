@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
     console.log('res.user.id', req.user.id);
     
     
-    let queryText = `select park_visits.id, park_id, name, date, city, state from park_visits
+    let queryText = `select park_visits.id, park_id, name, date, city, state, visit_complete from park_visits
     join parks 
     on parks.id = park_visits.park_id
     where user_id = $1
