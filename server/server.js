@@ -17,6 +17,8 @@ const datesRouter = require('./routes/dates.router');
 const visitRouter = require('./routes/park.visit.router');
 const visitAttractionsRouter = require('./routes/visit.attractions.router');
 const quantityRouter = require('./routes/attractions.quantity.router');
+const visitDetailsRouter = require('./routes/visit.details.router');
+const notesRouter = require('./routes/notes.router');
 
 
 // Body parser middleware
@@ -39,7 +41,8 @@ app.use('/api/dates', datesRouter);
 app.use('/api/visitPark', visitRouter);
 app.use('/api/visitAttractions', visitAttractionsRouter);
 app.use('/api/attractionsQuantity', quantityRouter);
-
+app.use('/api/visitDetails', visitDetailsRouter);
+app.use('/api/visitNotes', notesRouter);
 // Serve static files
 app.use(express.static('build'));
 

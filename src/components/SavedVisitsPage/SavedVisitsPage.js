@@ -28,7 +28,7 @@ class SavedVisitsPage extends Component {
 
     handleDisplay = (visitId) => {
         console.log('display clicked visit Id', visitId);
-        
+        this.props.history.push(`/previousVisitDetail/${visitId}`);
     }
 
     render() {
