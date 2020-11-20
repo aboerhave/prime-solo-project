@@ -16,6 +16,7 @@ class TemplateClass extends Component {
             <div>
                 <h2>{this.state.heading}</h2>
                 <h3>mored words</h3>
+                <h4>even more words</h4>
             </div>
         );
     }
