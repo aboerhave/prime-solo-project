@@ -15,6 +15,7 @@ class PreviousVisitDetailPage extends Component {
         return (
             <div>
                 <h2>{this.state.heading}</h2>
+                <h1>previous details</h1>
             </div>
         );
     }
