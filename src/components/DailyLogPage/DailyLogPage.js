@@ -9,9 +9,12 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 class DailyLogPage extends Component {
     state = {
         heading: 'Daily Log Page',
+        notes: '',
+        logId: 0
     };
 
     componentDidMount = () => {
+        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
         // console.log(this.props.store.singleParkVisit);
         // const { parkId } = this.props.store.singleParkVisit.park_id;
@@ -23,6 +26,16 @@ class DailyLogPage extends Component {
         // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: this.props.store.singleParkVisit.park_id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_FOR PARK_VISIT', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
+    }
+
+    //make component did update
+    componentDidUpdate = () => {
+        if (this.props.store.singleParkVisit.id =! this.state.logId) {
+            this.setState({
+                notes: this.props.store.notes,
+                logId: this.props.store.singleParkVisit.id
+            })
+        }
     }
 
     renderFavorite = (attractionId) => {
@@ -115,6 +128,21 @@ class DailyLogPage extends Component {
         }
     }
 
+    handleNotesChange = (event) => {
+        this.setState({
+            notes: event.target.value
+        })
+    }
+
+    handleNotesSave = () => {
+        console.log('save clicked');
+        let dataToSend = {
+            notes: this.state.notes,
+            visitId: this.props.match.params.id
+        }
+        this.props.dispatch({type: 'SAVE_NOTES', payload: dataToSend});
+    }
+
     render() {
             const { id } = this.props.match.params;
             return (
@@ -142,57 +170,20 @@ class DailyLogPage extends Component {
                         )
                     })}
                 </ul>
+                <label for="notesBox">Additional Notes</label>
+                    <br/>
+                    
+                    <textarea id="notesBox" 
+                    onChange={(event) => this.handleNotesChange(event)} 
+                    value={this.state.notes}>
+                    </textarea>
+                    <button onClick={this.handleNotesSave}>Save Notes</button>
+                    {JSON.stringify(this.state.notes)}
+                    {JSON.stringify(this.props.store.notes)}
+                    {/* <h5>{this.props.store.notes}</h5> */}
             </div>
         );
     }
 }
 
 export default connect(mapStoreToProps)(DailyLogPage);
-
-
-
-
-
-
-
-
-//     refreshFavorites = () => {
-//         const { id } = this.props.match.params;
-//         // get favorite attractions for user
-//         // this.props.dispatch({type: 'GET_FAVORITES'});
-//         // this.props.dispatch({type: 'GET_OFF_FAVORITES'});
-//         // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
-//     }
-
-
-
-
-//     render() {
-//         const { id } = this.props.match.params;
-//         return (
-//             <div>
-//             {/* {JSON.stringify(this.props.store)} */}
-//                 <h3>parks id is {id} </h3>
-//                 <h3>{this.props.store.singlePark.name}</h3>
-//                 <button onClick={()=>this.toDateSelection(id)}>Make a New Record For this Park</button>
-//                 <ul>
-//                     {/* put list of attractions here */}
-//                     {this.props.store.attractions.map((attraction) => {
-//                         return(
-//                             <li key={attraction.id} >
-//                                 {attraction.name}
-//                                 <br/>
-//                                 {attraction.id}
-//                                 {/* {attraction.} */}
-//                                 {this.renderFavorite(attraction.id)}
-
-//                             </li>
-//                         )
-//                     })}
-//                 </ul>
-//             </div>
-//         );
-//     }
-// }
-
-// export default connect(mapStoreToProps)(AttractionsPage);
