@@ -24,8 +24,10 @@ import AttractionsPage from '../AttractionsPage/AttractionsPage';
 import DateSelection from '../DateSelection/DateSelection';
 import DailyLogPage from '../DailyLogPage/DailyLogPage';
 import SavedVisitsPage from '../SavedVisitsPage/SavedVisitsPage';
+import PreviousVisitDetailPage from '../PreviousVisitDetailPage/PreviousVisitDetailPage';
 
 import './App.css';
+
 
 class App extends Component {
     componentDidMount() {
@@ -53,6 +55,7 @@ class App extends Component {
                             <Route exact path='/dateSelection/:id' component={DateSelection} />
                             <Route exact path='/dailyLog/:id' component={DailyLogPage} />
                             <Route exact path='/savedVisits' component={SavedVisitsPage} />
+                            <Route exact path='/previousVisitDetail/:id' component={PreviousVisitDetailPage} />
                             {/* For protected routes, the view could show one of several things on the same route.
                             Visiting localhost:3000/user will show the UserPage if the user is logged in.
                             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
