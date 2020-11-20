@@ -18,7 +18,9 @@ function* getVisitsForUser() {
 function* deleteUserVisit (action) {
     console.log('in deleteUserVisit', action.payload);
     const deleteVisitResponse = yield axios.delete(`/api/visitPark/${action.payload}`);
-    yield put({type: 'GET_ALL_VISITS_FOR_USER'});
+    console.log('deleteVisitResponse', deleteVisitResponse);
+    
+    yield put({type: 'GET_ALL_VISITS_FOR_USER', payload: deleteVisitResponse.data[0].user_id});
 }
 
 function* userVisitsSaga() {

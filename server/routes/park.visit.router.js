@@ -48,7 +48,7 @@ router.delete('/:visitId', (req, res) => {
     // visits_attractions table first, because they rely on the
     // park_visits, so they must be deleted first
     let queryText = `delete from visits_attractions
-    where id = $1`;
+    where park_visit_id = $1`;
 
     pool.query(queryText, [req.params.visitId]).then((result) => {
         // next, the entries will be deleted from the park_visits table
@@ -62,7 +62,8 @@ router.delete('/:visitId', (req, res) => {
 
         pool.query(secondQueryText, [req.params.visitId]).then((secondResult) => {
             // seccess for entire delete route
-            res.sendStatus(200);
+            
+            res.send(secondResult.rows);
         }).catch((error) => {
             console.log('error deleting park_vists');
             res.sendStatus(500);
