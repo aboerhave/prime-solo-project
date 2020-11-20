@@ -24,19 +24,6 @@ class DateSelection extends Component {
         })
     }
     
-    componentDidUpdate = () => {
-        console.log('hello');
-        
-        // this makes the if true if there is a value in the singleVisit reducer 
-        // after a new date is selected, and sends the page to the 
-        // dailyLog component 
-        if (Object.keys(this.props.store.singleVisit).length) {
-            // this.props.history.push(`/dailyLog/${this.props.store.singleVisit.id}`)
-        }
-        
-        
-    }
-
     handleSubmit = () => {
         console.log(this.state.date);
         let inputDate = this.state.date;
@@ -74,11 +61,11 @@ class DateSelection extends Component {
             }
             else {
                 // user confirmed date is correct => send to database
-                // let dateToSend = {date: inputDate} 
-                // const {history} = this.props;
-                // console.log('history', history);
                 
-                this.props.dispatch({type: 'ADD_DATE', payload: {date: inputDate, park: this.props.match.params.id}});
+                this.props.dispatch({type: 'ADD_DATE', 
+                payload: {date: inputDate, park: this.props.match.params.id}, 
+                history: this.props.history, 
+                location: '/dailyLog'});
             }
         }        
     }
@@ -93,7 +80,7 @@ class DateSelection extends Component {
                 <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
                 {JSON.stringify(this.state)}
                 <br/>
-                {/* {JSON.stringify(this.props)} */}
+                {JSON.stringify(this.props)}
             </div>
         );
     }
