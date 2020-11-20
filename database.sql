@@ -37,14 +37,15 @@ create table park_visits (
 	user_id int references users,
 	date date,
 	notes text,
-	visit_complete boolean
+	visit_complete boolean,
+    park_id int references parks
 );
 
 create table visits_attractions (
 	id serial primary key,
 	park_visit_id int references park_visits,
 	attractions_id int references attractions,
-	times_ridden int
+	times_ridden int default 1
 );
 
 
