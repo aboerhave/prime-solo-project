@@ -9,6 +9,7 @@ import favoritesSaga from './favorites.saga';
 import dateSaga from './date.saga';
 import visitAttractionsSaga from './visit_attractions.saga';
 import attractionsQuantitySaga from './attractions_quantity.saga';
+import userVisitsSaga from './user_visits.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -29,5 +30,7 @@ export default function* rootSaga() {
         dateSaga(),
         visitAttractionsSaga(),
         attractionsQuantitySaga(),
+        userVisitsSaga(),
+        
     ]);
 }

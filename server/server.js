@@ -18,6 +18,7 @@ const visitRouter = require('./routes/park.visit.router');
 const visitAttractionsRouter = require('./routes/visit.attractions.router');
 const quantityRouter = require('./routes/attractions.quantity.router');
 
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
