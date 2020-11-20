@@ -31,7 +31,7 @@ class DateSelection extends Component {
         // after a new date is selected, and sends the page to the 
         // dailyLog component 
         if (Object.keys(this.props.store.singleVisit).length) {
-            this.props.history.push(`/dailyLog/${this.props.store.singleVisit.id}`)
+            // this.props.history.push(`/dailyLog/${this.props.store.singleVisit.id}`)
         }
         
         
@@ -93,7 +93,7 @@ class DateSelection extends Component {
                 <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
                 {JSON.stringify(this.state)}
                 <br/>
-                {JSON.stringify(this.props)}
+                {/* {JSON.stringify(this.props)} */}
             </div>
         );
     }
