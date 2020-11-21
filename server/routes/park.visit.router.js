@@ -15,9 +15,10 @@ router.get('/:id', (req, res) => {
     else {  // authenticated
         let queryText = `select park_visits.id, park_id, name, date, city, state from park_visits
         join parks on parks.id = park_visits.park_id
-        where park_visits.id = $1`;
+        where park_visits.id = $1
+        and user_id = $2`;
 
-        pool.query(queryText, [req.params.id]).then((result) => {
+        pool.query(queryText, [req.params.id, req.user.id]).then((result) => {
             res.send(result.rows);
         }).catch((error) => {
             console.log('error in get park visit request', error);
@@ -64,9 +65,10 @@ router.delete('/:visitId', (req, res) => {
         // visits_attractions table first, because they rely on the
         // park_visits, so they must be deleted first
         let queryText = `delete from visits_attractions
-        where park_visit_id = $1`;
+        where park_visit_id = $1 
+        and user_id = $2`;
 
-        pool.query(queryText, [req.params.visitId]).then((result) => {
+        pool.query(queryText, [req.params.visitId, req.user.id]).then((result) => {
             // next, the entries will be deleted from the park_visits table
             // after the visits_attractions delete is done
 
@@ -74,9 +76,10 @@ router.delete('/:visitId', (req, res) => {
         
             let secondQueryText = `delete from park_visits
             where id = $1
+            and user_id = $2
             returning user_id;`;
 
-            pool.query(secondQueryText, [req.params.visitId]).then((secondResult) => {
+            pool.query(secondQueryText, [req.params.visitId, req.user.id]).then((secondResult) => {
                 // seccess for entire delete route
                 res.send(secondResult.rows);
             }).catch((error) => {
@@ -103,9 +106,10 @@ router.put('/:parkVisitId', (req, res) => {
     else {  // authenticated
         let queryText = `update park_visits
         set visit_complete = true
-        where id = $1;`;
+        where id = $1
+        and user_id = $2;`;
 
-        pool.query(queryText, [req.params.parkVisitId]).then((result) => {
+        pool.query(queryText, [req.params.parkVisitId, req.user.id]).then((result) => {
             console.log('success completing visit');
             res.sendStatus(201);
         }).catch((error) => {

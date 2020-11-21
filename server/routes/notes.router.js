@@ -26,9 +26,10 @@ router.post('/:parkVisitId', (req, res) => {
     
     let queryText = `update park_visits
     set notes = $1
-    where id=$2;`;
+    where id = $2
+    and user_id = $3;`;
 
-    pool.query(queryText, [req.body.notes, req.params.parkVisitId]).then((result) => {
+    pool.query(queryText, [req.body.notes, req.params.parkVisitId, req.user.id]).then((result) => {
         res.sendStatus(201);
     }).catch((error) => {
         console.log('error in updating notes', error);

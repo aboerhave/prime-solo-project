@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 // GET route for getting all of the attractions in the database that
-// have been ridden for this visit
+// are available at the park
 router.get('/:parkVisitId', (req, res) => {
     console.log('parkVisitId', req.params.parkVisitId);
     
@@ -19,6 +19,7 @@ router.get('/:parkVisitId', (req, res) => {
         join park_visits
         on parks.id = park_visits.park_id
         where park_visits.id = $1
+        and user_id = $2
         order by attractions.name;`;
 
         pool.query(queryText, [req.params.parkVisitId]).then((result) => {
