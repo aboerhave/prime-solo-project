@@ -28,12 +28,15 @@ class DailyLogPage extends Component {
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
     }
 
-    //make component did update
+    // It works ok now, but still gives value false to singleVisit
+    // afterwards
     componentDidUpdate = () => {
-        if (this.props.store.singleParkVisit.id =! this.state.logId) {
+        if (this.props.store.singleVisit =! this.state.logId) {
+            console.log('state', this.state);
+            
             this.setState({
                 notes: this.props.store.notes,
-                logId: this.props.store.singleParkVisit.id
+                logId: this.props.store.singleVisit
             })
         }
     }
@@ -138,7 +141,7 @@ class DailyLogPage extends Component {
         console.log('save clicked');
         let dataToSend = {
             notes: this.state.notes,
-            visitId: this.props.match.params.id
+            visitId: this.props.store.singleParkVisit.id
         }
         this.props.dispatch({type: 'SAVE_NOTES', payload: dataToSend});
     }
