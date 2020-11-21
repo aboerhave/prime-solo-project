@@ -3,14 +3,17 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-// GET route for getting all of the attractions in the database
-// at the chosen park
+// GET route for getting all of the attractions in the database that
+// have been ridden for this visit
 router.get('/:parkVisitId', (req, res) => {
-    
     console.log('parkVisitId', req.params.parkVisitId);
     
-
-    let queryText = `select attractions.name, attractions.id from attractions
+    if (req.isAuthenticated() === false) { // unauthenticated
+        console.log('forbidden/unauthenticated for getting already ridden attractions');
+        res.sendStatus(403);
+    }
+    else {  // authenticated
+        let queryText = `select attractions.name, attractions.id from attractions
         join parks 
         on parks.id = attractions.park_id
         join park_visits
@@ -18,15 +21,16 @@ router.get('/:parkVisitId', (req, res) => {
         where park_visits.id = $1
         order by attractions.name;`;
 
-    pool.query(queryText, [req.params.parkVisitId]).then((result) => {
-        console.log('result.rows', result.rows);
+        pool.query(queryText, [req.params.parkVisitId]).then((result) => {
+            console.log('result.rows', result.rows);
         
-        res.send(result.rows);
-    }).catch((error) => {
-        console.log('error in get attractions request', error);
-        res.sendStatus(500);
-    });
-});
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log('error in get attractions request', error);
+            res.sendStatus(500);
+        });
+    }   // end authentication
+}); // end get route
 
 
 
