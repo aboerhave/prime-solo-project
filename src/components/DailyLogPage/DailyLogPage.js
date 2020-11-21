@@ -182,8 +182,9 @@ class DailyLogPage extends Component {
                     <br/>
                     
                     <textarea id="notesBox" 
-                    onChange={(event) => this.handleNotesChange(event)} 
-                    value={this.state.notes}>
+                        onChange={(event) => this.handleNotesChange(event)} 
+                        value={this.state.notes}
+                    >
                     </textarea>
                     <button onClick={this.handleNotesSave}>Save Notes</button>
                     <button onClick={this.handleCompleteVisit}>Complete Visit</button>

@@ -22,7 +22,7 @@ router.get('/:parkVisitId', (req, res) => {
         and user_id = $2
         order by attractions.name;`;
 
-        pool.query(queryText, [req.params.parkVisitId]).then((result) => {
+        pool.query(queryText, [req.params.parkVisitId, req.user.id]).then((result) => {
             console.log('result.rows', result.rows);
         
             res.send(result.rows);
