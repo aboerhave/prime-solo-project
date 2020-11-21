@@ -18,7 +18,10 @@ class SavedVisitsPage extends Component {
 
     handleDelete = (visitId) => {
         console.log('visitId', visitId);
-        this.props.dispatch({type: 'DELETE_VISIT', payload: visitId});
+        let accept = window.confirm('Please confirm that you would like to delete this visit from the list');
+        if(accept){
+            this.props.dispatch({type: 'DELETE_VISIT', payload: visitId});
+        }
     }
 
     handleEdit = (visitId) => {

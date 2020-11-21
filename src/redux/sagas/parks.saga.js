@@ -1,4 +1,4 @@
-import {put, takeEvery, takeLatest} from 'redux-saga/effects';
+import {put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
 
 // function to get all the parks from database

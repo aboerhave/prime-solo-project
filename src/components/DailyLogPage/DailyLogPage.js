@@ -14,7 +14,6 @@ class DailyLogPage extends Component {
     };
 
     componentDidMount = () => {
-        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
         // console.log(this.props.store.singleParkVisit);
         // const { parkId } = this.props.store.singleParkVisit.park_id;
@@ -26,6 +25,7 @@ class DailyLogPage extends Component {
         // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: this.props.store.singleParkVisit.park_id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_FOR PARK_VISIT', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
     }
 
     //make component did update

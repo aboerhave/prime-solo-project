@@ -14,6 +14,7 @@ router.get('/:id', (req, res) => {
     where park_visits.id = $1`;
 
     pool.query(queryText, [req.params.id]).then((result) => {
+        console.log('park visit get route result.rows', result.rows);
         res.send(result.rows);
     }).catch((error) => {
         console.log('error in get park visit request', error);
