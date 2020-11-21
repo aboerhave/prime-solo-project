@@ -7,6 +7,8 @@ function* addDate(action) {
         
         const dateResponse = yield axios.post('/api/dates',  action.payload);
         let dateId = dateResponse.data[0].id;
+        console.log('dateId', dateId);
+        
         let locationToGoTo = action.location + `/${dateId}`;
         
         yield put({type: 'SET_SINGLE_VISIT', payload: dateId});
