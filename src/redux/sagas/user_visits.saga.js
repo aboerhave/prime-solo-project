@@ -23,11 +23,19 @@ function* deleteUserVisit (action) {
     yield put({type: 'GET_ALL_VISITS_FOR_USER', payload: deleteVisitResponse.data[0].user_id});
 }
 
+function* completeVisit (action) {
+    console.log('in completeVisit function', action.payload);
+    yield axios.put(`api/visitPark/${action.payload}`);
+    // yield put({type: 'GET_ALL_VISITS_FOR_USER'})
+    yield put({type: 'SET_VISIT_PARK', payload: action.payload});
+}
+
 function* userVisitsSaga() {
     console.log('in userVisitsSaga');
     
     yield takeEvery('GET_ALL_VISITS_FOR_USER', getVisitsForUser);
     yield takeEvery('DELETE_VISIT', deleteUserVisit);
+    yield takeEvery('VISIT_COMPLETE', completeVisit);
 }
 
 export default userVisitsSaga;

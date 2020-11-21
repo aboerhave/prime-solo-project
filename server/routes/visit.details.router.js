@@ -7,7 +7,7 @@ const router = express.Router();
 // at the chosen park
 router.get('/:parkVisitId', (req, res) => {
     
-    console.log('parkVisitId', req.params.parkVisitId);
+    console.log('get visit details route parkVisitId', req.params.parkVisitId);
     
 
     let queryText = `select * from attractions
@@ -17,7 +17,7 @@ router.get('/:parkVisitId', (req, res) => {
     on visits_attractions.attractions_id = attractions.id
     join park_visits
     on parks.id = park_visits.park_id
-    where park_visits.id = $1;`;
+    where park_visit_id = $1;`;
 
     pool.query(queryText, [req.params.parkVisitId]).then((result) => {
         console.log('result.rows', result.rows);

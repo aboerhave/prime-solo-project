@@ -9,7 +9,7 @@ router.get('/:id', (req, res) => {
     console.log('get route for park visit req.params.id', req.params.id);
     
 
-    let queryText = `select park_visits.id, park_id, name from park_visits
+    let queryText = `select park_visits.id, park_id, name, date, city, state from park_visits
     join parks on parks.id = park_visits.park_id
     where park_visits.id = $1`;
 
@@ -75,5 +75,23 @@ router.delete('/:visitId', (req, res) => {
     }); // end first query catch
     
 })  // end entire delete route
+
+// route for user to declare visit complete to not allow any more
+// editing
+router.put('/:parkVisitId', (req, res) => {
+    console.log('in route for completing visit', req.params.parkVisitId);
+    
+    let queryText = `update park_visits
+    set visit_complete = true
+    where id = $1;`;
+
+    pool.query(queryText, [req.params.parkVisitId]).then((result) => {
+        console.log('success completing visit');
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log('error in complete visit route', error);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = router;

@@ -15,6 +15,7 @@ class PreviousVisitDetailPage extends Component {
         this.props.dispatch({type: 'GET_VISIT_DETAILS', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id});
 
     }
 
@@ -22,14 +23,15 @@ class PreviousVisitDetailPage extends Component {
         return (
             <div>
                 <h2>{this.state.heading}</h2>
-                {this.props.store.visitDetails[0] &&
+                {this.props.store.singleParkVisit.date &&
                 <>
-                    <h2>{this.props.store.visitDetails[0].name}</h2>
-                    <h2>{this.props.store.visitDetails[0].city}</h2>
-                    <h2>{this.props.store.visitDetails[0].state}</h2>
-                    <h2>{this.props.store.visitDetails[0].date.slice(5,7) + '/' 
-                    + this.props.store.visitDetails[0].date.slice(8,10) + '/'
-                    + this.props.store.visitDetails[0].date.slice(0,4)}</h2>
+                    {/* <h2>{this.props.store.visitDetails[0].name}</h2> */}
+                    <h2>{this.props.store.singleParkVisit.name}</h2>
+                    <h2>{this.props.store.singleParkVisit.city}</h2>
+                    <h2>{this.props.store.singleParkVisit.state}</h2>
+                    <h2>{this.props.store.singleParkVisit.date.slice(5,7) + '/' 
+                    + this.props.store.singleParkVisit.date.slice(8,10) + '/'
+                    + this.props.store.singleParkVisit.date.slice(0,4)}</h2>
                 </>    
                 }
                 <ul>

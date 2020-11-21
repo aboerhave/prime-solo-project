@@ -146,6 +146,11 @@ class DailyLogPage extends Component {
         this.props.dispatch({type: 'SAVE_NOTES', payload: dataToSend});
     }
 
+    handleCompleteVisit = () => {
+        console.log('clicked', this.props.store.singleParkVisit.id);
+        this.props.dispatch({type: 'VISIT_COMPLETE', payload: this.props.store.singleParkVisit.id});
+    }
+
     render() {
             const { id } = this.props.match.params;
             return (
@@ -181,6 +186,7 @@ class DailyLogPage extends Component {
                     value={this.state.notes}>
                     </textarea>
                     <button onClick={this.handleNotesSave}>Save Notes</button>
+                    <button onClick={this.handleCompleteVisit}>Complete Visit</button>
                     {JSON.stringify(this.state.notes)}
                     {JSON.stringify(this.props.store.notes)}
                     {/* <h5>{this.props.store.notes}</h5> */}
