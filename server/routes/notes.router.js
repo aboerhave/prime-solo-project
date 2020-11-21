@@ -7,9 +7,10 @@ router.get('/:parkVisitId', (req, res) => {
     console.log('get notes route with parkVisitId', req.params.parkVisitId);
     
     let queryText = `select notes from park_visits
-    where id = $1;`;
+    where id = $1
+    and user_id = $2;`;
 
-    pool.query(queryText, [req.params.parkVisitId]).then((result) => {
+    pool.query(queryText, [req.params.parkVisitId, req.user.id]).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log('error in get notes route', error);
