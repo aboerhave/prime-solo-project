@@ -7,7 +7,7 @@ const router = express.Router();
 // for the park visit inputted
 router.get('/:parkVisitId', (req, res) => {
     
-    console.log('parkVisitId', req.params.parkVisitId);
+    console.log('get attractions quantity parkVisitId', req.params.parkVisitId);
     
 
     let queryText = `select attractions.name, park_visit_id, attractions_id, times_ridden from attractions
@@ -17,9 +17,11 @@ router.get('/:parkVisitId', (req, res) => {
         on visits_attractions.attractions_id = attractions.id
         join park_visits
         on parks.id = park_visits.park_id
-        where park_visits.id = $1;`
+        where park_visit_id = $1;`
 
     pool.query(queryText, [req.params.parkVisitId]).then((result) => {
+        console.log('get attractions quantity result.rows', result.rows);
+        
         res.send(result.rows);
     }).catch((error) => {
         console.log('error in get attractions request', error);
