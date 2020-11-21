@@ -50,11 +50,31 @@ class App extends Component {
                                 path="/about"
                                 component={AboutPage}
                             />
-                            <Route exact path="/parks" component={ParksPage} />
-                            <Route exact path='/attractions/:id' component={AttractionsPage} />
-                            <Route exact path='/dateSelection/:id' component={DateSelection} />
-                            <Route exact path='/dailyLog/:id' component={DailyLogPage} />
-                            <Route exact path='/savedVisits' component={SavedVisitsPage} />
+                            <ProtectedRoute 
+                                exact 
+                                path="/parks" 
+                                component={ParksPage} 
+                            />
+                            <ProtectedRoute 
+                                exact 
+                                path='/attractions/:id' 
+                                component={AttractionsPage} 
+                            />
+                            <ProtectedRoute 
+                                exact 
+                                path='/dateSelection/:id' 
+                                component={DateSelection} 
+                            />
+                            <ProtectedRoute 
+                                exact 
+                                path='/dailyLog/:id' 
+                                component={DailyLogPage} 
+                            />
+                            <ProtectedRoute 
+                                exact 
+                                path='/savedVisits' 
+                                component={SavedVisitsPage} 
+                            />
                             <Route exact path='/previousVisitDetail/:id' component={PreviousVisitDetailPage} />
                             {/* For protected routes, the view could show one of several things on the same route.
                             Visiting localhost:3000/user will show the UserPage if the user is logged in.
