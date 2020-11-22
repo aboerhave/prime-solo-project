@@ -46,24 +46,35 @@ router.post('/', (req, res) => {
         res.sendStatus(403);
     }
     else {  // authenticated
-        let queryText = `insert into visits_attractions (park_visit_id, attractions_id)
-        values ($1, $2) returning park_visit_id;`;
-
-        pool.query(queryText,[req.body.parkVisitId, req.body.attraction]).then((result) => {
-            console.log('successfully added attraction to park visit');
-            console.log('result.rows', result.rows[0]);
-        
-            res.send(result.rows[0]);
+        let authorizationCheckText = `select id from park_visits
+        where id = $1
+        and user_id = $2;`;
+        pool.query(authorizationCheckText, [req.body.parkVisitId, req.user.id]).then((authResult) => {
+            const checkedParkVisitId = authResult.rows[0].id;
+            console.log('post new attraction result.rows[0]', authResult.rows[0]);
+            
+            let queryText = `insert into visits_attractions (park_visit_id, attractions_id)
+            values ($1, $2) returning park_visit_id;`;
+            
+            pool.query(queryText,[checkedParkVisitId, req.body.attraction]).then((result) => {
+                console.log('successfully added attraction to park visit');
+                console.log('second post new attraction result.rows', result.rows[0]);
+                
+                res.send(result.rows[0]);
+            }).catch((error) => {
+                console.log('error in post attractions to park visit quantity', error);
+                res.sendStatus(500);
+            });
         }).catch((error) => {
             console.log('error in post attractions to park visit quantity', error);
-            res.sendStatus(500);
-        });
-    }   // end authentication
-}); // end post route
-
-// put route to increment the number of times the attraction has been ridden
-router.put('/', (req, res) => {
-    console.log('stuff send to attractionsQuantity put', req.body);
+            
+        })
+        }   // end authentication
+    }); // end post route
+    
+    // put route to increment the number of times the attraction has been ridden
+    router.put('/', (req, res) => {
+        console.log('stuff send to attractionsQuantity put', req.body);
     
     if (req.isAuthenticated() === false) { // unauthenticated
         console.log('forbidden/unauthenticated for increment attraction');
