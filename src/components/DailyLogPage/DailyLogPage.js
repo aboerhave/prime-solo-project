@@ -24,7 +24,7 @@ class DailyLogPage extends Component {
         this.props.dispatch({type: 'GET_OFF_FAVORITES'});
         // // get the attractions at the chosen park
         // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: this.props.store.singleParkVisit.park_id});
-        this.props.dispatch({type: 'GET_ATTRACTIONS_FOR PARK_VISIT', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'GET_ATTRACTIONS_FOR_PARK_VISIT', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
     }
 
