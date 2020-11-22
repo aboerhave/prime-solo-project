@@ -5,10 +5,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 
 class AttractionsPage extends Component {
 
-    
-    state = {
-        heading: 'Class Component',
-    };
 
     componentDidMount = () => { 
         // find id for park chosen by user that is in the url parameter
@@ -21,14 +17,6 @@ class AttractionsPage extends Component {
         this.props.dispatch({type: 'GET_OFF_FAVORITES'});
         // get the attractions at the chosen park
         this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
-    }
-
-    refreshFavorites = () => {
-        const { id } = this.props.match.params;
-        // get favorite attractions for user
-        // this.props.dispatch({type: 'GET_FAVORITES'});
-        // this.props.dispatch({type: 'GET_OFF_FAVORITES'});
-        // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: id});
     }
 
     renderFavorite = (attractionId) => {
@@ -54,7 +42,6 @@ class AttractionsPage extends Component {
         console.log('option1');
         
         this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
-        this.refreshFavorites();
     }
 
     handleClickOn = (attractionId) => {
@@ -65,7 +52,6 @@ class AttractionsPage extends Component {
             console.log('option2');
             
             this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        
-            this.refreshFavorites();
         }
         // it should go here if the attraction has not been set as a favorite by
         // the user yet
@@ -73,7 +59,6 @@ class AttractionsPage extends Component {
             console.log('option3');
             
             this.props.dispatch({type: 'SET_ATTRACTION_AS_FAVORITE', payload: attractionId});            
-            this.refreshFavorites();
         }
     }
 
@@ -89,19 +74,15 @@ class AttractionsPage extends Component {
         const { id } = this.props.match.params;
         return (
             <div>
-            {/* {JSON.stringify(this.props.store)} */}
-                <h3>parks id is {id} </h3>
-                <h3>{this.props.store.singlePark.name}</h3>
                 <button onClick={()=>this.toDateSelection(id)}>Make a New Record For this Park</button>
+                <h3>{this.props.store.singlePark.name}</h3>
+                <h4>Attractopms</h4>
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
                         return(
                             <li key={attraction.id} >
                                 {attraction.name}
-                                <br/>
-                                {attraction.id}
-                                {/* {attraction.} */}
                                 {this.renderFavorite(attraction.id)}
 
                             </li>

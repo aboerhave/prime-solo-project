@@ -8,7 +8,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class DateSelection extends Component {
     state = {
-        heading: 'Date Selection',
         date: ''
     };
 
@@ -73,14 +72,12 @@ class DateSelection extends Component {
     render() {
         return (
             <div>
-                <h2>{this.state.heading}</h2>
+                <h2>Daily Log</h2>
                 <h2>Select a date for a visit to {this.props.store.singlePark.name}</h2>
                 <label for="parkVisitDate">Park Visit Date (MM/DD/YYYY):</label>
                 <input onChange={(event) => this.handleChange(event, 'date')} type="date" id="birthday" name="parkVisitDate" />
                 <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
-                {JSON.stringify(this.state)}
                 <br/>
-                {JSON.stringify(this.props)}
             </div>
         );
     }

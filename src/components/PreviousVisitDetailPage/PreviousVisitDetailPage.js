@@ -7,9 +7,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // the component name TemplateClass with the name for the new
 // component.
 class PreviousVisitDetailPage extends Component {
-    state = {
-        heading: 'Details',
-    };
+
 
     componentDidMount = () => {
         this.props.dispatch({type: 'GET_VISIT_DETAILS', payload: this.props.match.params.id});
@@ -22,27 +20,28 @@ class PreviousVisitDetailPage extends Component {
     render() {
         return (
             <div>
-                <h2>{this.state.heading}</h2>
+                <h2>Details</h2>
                 {this.props.store.singleParkVisit.date &&
                 <>
-                    {/* <h2>{this.props.store.visitDetails[0].name}</h2> */}
-                    <h2>{this.props.store.singleParkVisit.name}</h2>
-                    <h2>{this.props.store.singleParkVisit.city}</h2>
-                    <h2>{this.props.store.singleParkVisit.state}</h2>
-                    <h2>{this.props.store.singleParkVisit.date.slice(5,7) + '/' 
+                    <h3>{this.props.store.singleParkVisit.name}</h3> 
+                    <h3>{this.props.store.singleParkVisit.city}, {this.props.store.singleParkVisit.state}</h3>
+                    <h3>{this.props.store.singleParkVisit.date.slice(5,7) + '/' 
                     + this.props.store.singleParkVisit.date.slice(8,10) + '/'
-                    + this.props.store.singleParkVisit.date.slice(0,4)}</h2>
+                    + this.props.store.singleParkVisit.date.slice(0,4)}</h3>
                 </>    
                 }
                 <ul>
                     {this.props.store.attractionsQuantity.map((attraction) => {
                         return (
                             <li key={attraction.attractions_id}>
-                                {attraction.name}
                                 {attraction.times_ridden == 1 ?
-                                <p>1 time</p>
+                                <>
+                                    <h5>{attraction.name}: 1 time</h5>
+                                </>
                                 :
-                                <p>{attraction.times_ridden} times</p>
+                                <>
+                                    <h5>{attraction.name}: {attraction.times_ridden} times</h5>
+                                </>
                                 }
                             </li>
                         )

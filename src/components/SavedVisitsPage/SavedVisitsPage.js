@@ -41,10 +41,8 @@ class SavedVisitsPage extends Component {
                         let displayDate = fullDate.slice(5,7) + '/' + fullDate.slice(8,11) + '/' + fullDate.slice(0, 4);
                         return (
                             <li key = {visit.id}>
-                                <p>{displayDate}</p>
-                                <p>{visit.name}</p>
-                                <p>{visit.city}</p>
-                                <p>{visit.state}</p>
+                                <h5>{displayDate} {visit.name}</h5>
+                                <h5>{visit.city}, {visit.state}</h5>
                                 {visit.visit_complete ? 
                                 <button onClick={()=>this.handleDisplay(visit.id)}>See Visit Details</button>
                                 :

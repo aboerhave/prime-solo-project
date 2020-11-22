@@ -42,12 +42,12 @@ class DailyLogPage extends Component {
     }
 
     renderFavorite = (attractionId) => {
-        console.log('attractionID', attractionId);
-        console.log(this.props.store.favorites);
+        // console.log('attractionID', attractionId);
+        // console.log(this.props.store.favorites);
         // check to see if this number that is the attractionId is
         // in the list of attractionIds in the favorite table
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
-            console.log('yes');
+            // console.log('yes');
             return(
                 <button onClick={()=>this.handleClickOff(attractionId)}><span>🧡</span></button>
             )
@@ -151,13 +151,30 @@ class DailyLogPage extends Component {
         this.props.dispatch({type: 'VISIT_COMPLETE', payload: this.props.store.singleParkVisit.id});
     }
 
+    renderDate = (date) => {
+        console.log('date', date);
+        let month = date.slice(5, 7);
+        console.log(month);
+        let dayNumber = date.slice(8, 10);
+        console.log('day Number', dayNumber);
+        let year = date.slice(0, 4);
+        console.log('year', year);
+        return (
+            <h3>{month}/{dayNumber}/{year}</h3>
+        )
+    }
+
     render() {
             const { id } = this.props.match.params;
             return (
                 <div>
-                    {/* {JSON.stringify(this.props.store)} */}
-                    <h3>{this.props.store.singleParkVisit.name}</h3>
-
+                    <h2>Daily Log</h2>
+                    {this.props.store.singleParkVisit.date && 
+                        <>
+                        <h3>{this.props.store.singleParkVisit.name}</h3>
+                        {this.renderDate(this.props.store.singleParkVisit.date)}
+                        </>
+                    }
                     <ul>
                         {/* put list of attractions here */}
                         {this.props.store.visitAttractions.map((attraction) => {
@@ -165,8 +182,6 @@ class DailyLogPage extends Component {
                             <li key={attraction.id} >
                                 {attraction.name}
                                 <br/>
-                                {attraction.id}
-                                {/* {attraction.} */}
                                 
                                 {this.renderFavorite(attraction.id)}
                                 {/* put button to increase here and then make button click functionality
@@ -178,7 +193,7 @@ class DailyLogPage extends Component {
                         )
                     })}
                 </ul>
-                <label for="notesBox">Additional Notes</label>
+                <label for="notesBox">Additional Notes:</label>
                     <br/>
                     
                     <textarea id="notesBox" 
@@ -188,9 +203,6 @@ class DailyLogPage extends Component {
                     </textarea>
                     <button onClick={this.handleNotesSave}>Save Notes</button>
                     <button onClick={this.handleCompleteVisit}>Complete Visit</button>
-                    {JSON.stringify(this.state.notes)}
-                    {JSON.stringify(this.props.store.notes)}
-                    {/* <h5>{this.props.store.notes}</h5> */}
             </div>
         );
     }
