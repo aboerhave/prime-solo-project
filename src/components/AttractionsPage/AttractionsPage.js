@@ -27,12 +27,12 @@ class AttractionsPage extends Component {
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
             console.log('yes');
             return(
-                <button onClick={()=>this.handleClickOff(attractionId)}><span>🧡</span></button>
+                <button onClick={()=>this.handleClickOff(attractionId)}><span role="img" aria-labelledby="orange heart">🧡</span></button>
             )
         }
         else {
             return(
-                <button onClick={()=>this.handleClickOn(attractionId)}><span>🤍</span></button>
+                <button onClick={()=>this.handleClickOn(attractionId)}><span role="img" aria-labelledby="white heart">🤍</span></button>
             )
         }
     }

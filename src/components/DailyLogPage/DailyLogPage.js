@@ -38,12 +38,12 @@ class DailyLogPage extends Component {
         // in the list of attractionIds in the favorite table
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
             return(
-                <button onClick={()=>this.handleClickOff(attractionId)}><span>🧡</span></button>
+                <button onClick={()=>this.handleClickOff(attractionId)}><span role="img" aria-labelledby="orange heart">🧡</span></button>
             )
         }
         else {
             return(
-                <button onClick={()=>this.handleClickOn(attractionId)}><span>🤍</span></button>
+                <button onClick={()=>this.handleClickOn(attractionId)}><span role="img" aria-labelledby="white heart">🤍</span></button>
             )
         }
     }
