@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
+
 class DailyLogPage extends Component {
     state = {
-        heading: 'Daily Log Page',
         notes: '',
         logId: 0
     };
@@ -16,14 +12,10 @@ class DailyLogPage extends Component {
     componentDidMount = () => {
         this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
-        // console.log(this.props.store.singleParkVisit);
-        // const { parkId } = this.props.store.singleParkVisit.park_id;
-        // console.log('parkId', parkId);
         
         this.props.dispatch({type: 'GET_FAVORITES'});
         this.props.dispatch({type: 'GET_OFF_FAVORITES'});
         // // get the attractions at the chosen park
-        // this.props.dispatch({type: 'GET_ATTRACTIONS', payload: this.props.store.singleParkVisit.park_id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_FOR_PARK_VISIT', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
     }
@@ -42,12 +34,9 @@ class DailyLogPage extends Component {
     }
 
     renderFavorite = (attractionId) => {
-        // console.log('attractionID', attractionId);
-        // console.log(this.props.store.favorites);
         // check to see if this number that is the attractionId is
         // in the list of attractionIds in the favorite table
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
-            // console.log('yes');
             return(
                 <button onClick={()=>this.handleClickOff(attractionId)}><span>🧡</span></button>
             )
@@ -62,9 +51,7 @@ class DailyLogPage extends Component {
     handleClickOff = (attractionId) => {
         console.log('clicked', attractionId);
         console.log('option1');
-        
         this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});
-        // this.refreshFavorites();
     }
 
     handleClickOn = (attractionId) => {
@@ -73,9 +60,7 @@ class DailyLogPage extends Component {
         // and turned it off again so that it exists in the favorites table
         if(this.props.store.offFavorites.some(attraction => attraction.attraction_id === attractionId)){
             console.log('option2');
-            
             this.props.dispatch({type: 'TOGGLE_FAVORITE', payload: attractionId});        
-            // this.refreshFavorites();
         }
         // it should go here if the attraction has not been set as a favorite by
         // the user yet
@@ -83,7 +68,6 @@ class DailyLogPage extends Component {
             console.log('option3');
             
             this.props.dispatch({type: 'SET_ATTRACTION_AS_FAVORITE', payload: attractionId});            
-            // this.refreshFavorites();
         }
     }
 

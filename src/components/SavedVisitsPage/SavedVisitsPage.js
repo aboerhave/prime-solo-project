@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 
-// Basic class component structure for React with default state
-// value setup. When making a new component be sure to replace
-// the component name TemplateClass with the name for the new
-// component.
+
 class SavedVisitsPage extends Component {
-    state = {
-        heading: 'Saved Visits',
-    };
 
     componentDidMount = () => {
         // get the visits for this user
@@ -17,6 +11,10 @@ class SavedVisitsPage extends Component {
     }
 
     handleDelete = (visitId) => {
+        let accept = window.confirm('Are you sure you want to delete this entry?')
+        if (!accept) {
+            return
+        }
         console.log('visitId', visitId);
         this.props.dispatch({type: 'DELETE_VISIT', payload: visitId});
     }
@@ -34,7 +32,7 @@ class SavedVisitsPage extends Component {
     render() {
         return (
             <div>
-                <h2>{this.state.heading}</h2>
+                <h2>Saved Visits</h2>
                 <ul>
                     {this.props.store.userVisits.map((visit) => {
                         let fullDate = visit.date.slice(0,10)

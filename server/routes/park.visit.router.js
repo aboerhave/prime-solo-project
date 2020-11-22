@@ -65,8 +65,10 @@ router.delete('/:visitId', (req, res) => {
         // visits_attractions table first, because they rely on the
         // park_visits, so they must be deleted first
         let queryText = `delete from visits_attractions
-        where park_visit_id = $1 
-        and user_id = $2`;
+        where park_visit_id in (
+            select id from park_visits
+            where park_visits.id = $1
+            and user_id = $2);`;
 
         pool.query(queryText, [req.params.visitId, req.user.id]).then((result) => {
             // next, the entries will be deleted from the park_visits table

@@ -76,7 +76,7 @@ class AttractionsPage extends Component {
             <div>
                 <button onClick={()=>this.toDateSelection(id)}>Make a New Record For this Park</button>
                 <h3>{this.props.store.singlePark.name}</h3>
-                <h4>Attractopms</h4>
+                <h4>Attractions</h4>
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
