@@ -15,15 +15,14 @@ class DailyLogPage extends Component {
         
         this.props.dispatch({type: 'GET_FAVORITES'});
         this.props.dispatch({type: 'GET_OFF_FAVORITES'});
-        // // get the attractions at the chosen park
+        // get the attractions at the chosen park
         this.props.dispatch({type: 'GET_ATTRACTIONS_FOR_PARK_VISIT', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
     }
 
-    // It works ok now, but still gives value false to singleVisit
-    // afterwards
+    
     componentDidUpdate = () => {
-        if (this.props.store.singleVisit =! this.state.logId) {
+        if (this.props.store.singleVisit !== this.state.logId) {
             console.log('state', this.state);
             
             this.setState({
@@ -149,44 +148,43 @@ class DailyLogPage extends Component {
     }
 
     render() {
-            const { id } = this.props.match.params;
-            return (
-                <div>
-                    <h2>Daily Log</h2>
-                    {this.props.store.singleParkVisit.date && 
-                        <>
-                        <h3>{this.props.store.singleParkVisit.name}</h3>
-                        {this.renderDate(this.props.store.singleParkVisit.date)}
-                        </>
-                    }
-                    <ul>
-                        {/* put list of attractions here */}
-                        {this.props.store.visitAttractions.map((attraction) => {
-                        return(
-                            <li key={attraction.id} >
-                                {attraction.name}
-                                <br/>
-                                
-                                {this.renderFavorite(attraction.id)}
-                                {/* put button to increase here and then make button click functionality
-                                different if the attraction is already in the quantity reducer, meaning it has 
-                                already been ridden at least once */}
-                                <button onClick={()=>this.handleIncrementClick(attraction.id)}>Ridden Today</button>
-                                {this.renderQuantity(attraction.id)}
-                            </li>
-                        )
-                    })}
-                </ul>
-                <label for="notesBox">Additional Notes:</label>
-                    <br/>
-                    
-                    <textarea id="notesBox" 
-                        onChange={(event) => this.handleNotesChange(event)} 
-                        value={this.state.notes}
-                    >
-                    </textarea>
-                    <button onClick={this.handleNotesSave}>Save Notes</button>
-                    <button onClick={this.handleCompleteVisit}>Complete Visit</button>
+        return (
+            <div>
+                <h2>Daily Log</h2>
+                {this.props.store.singleParkVisit.date && 
+                    <>
+                    <h3>{this.props.store.singleParkVisit.name}</h3>
+                    {this.renderDate(this.props.store.singleParkVisit.date)}
+                    </>
+                }
+                <ul>
+                    {/* put list of attractions here */}
+                    {this.props.store.visitAttractions.map((attraction) => {
+                    return(
+                        <li key={attraction.id} >
+                            {attraction.name}
+                            <br/>
+                            
+                            {this.renderFavorite(attraction.id)}
+                            {/* put button to increase here and then make button click functionality
+                            different if the attraction is already in the quantity reducer, meaning it has 
+                            already been ridden at least once */}
+                            <button onClick={()=>this.handleIncrementClick(attraction.id)}>Experienced Today</button>
+                            {this.renderQuantity(attraction.id)}
+                        </li>
+                    )
+                })}
+            </ul>
+            <label for="notesBox">Additional Notes:</label>
+                <br/>
+                
+                <textarea id="notesBox" 
+                    onChange={(event) => this.handleNotesChange(event)} 
+                    value={this.state.notes}
+                >
+                </textarea>
+                <button onClick={this.handleNotesSave}>Save Notes</button>
+                <button onClick={this.handleCompleteVisit}>Complete Visit</button>
             </div>
         );
     }
