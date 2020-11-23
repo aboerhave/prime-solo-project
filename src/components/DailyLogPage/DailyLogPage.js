@@ -103,12 +103,12 @@ class DailyLogPage extends Component {
             if (attractionsQuantity == 1) {
 
                 return (
-                    <p>1 time ridden today</p>
+                    <p>1 time experienced today</p>
                 )
             }
             else {
                 return (
-                    <p>{attractionsQuantity} times ridden today</p>
+                    <p>{attractionsQuantity} times experienced today</p>
                 )
             }
         }
