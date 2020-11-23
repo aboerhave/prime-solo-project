@@ -1,4 +1,4 @@
-import {put, takeEvery, takeLatest} from 'redux-saga/effects';
+import {put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
 
 // function to get all the attractions at the park chosen
@@ -19,7 +19,7 @@ function* getVisitAttractions(action) {
 function* visitAttractionsSaga() {
     console.log('in attractionsSaga');
     
-    yield takeEvery('GET_ATTRACTIONS_FOR PARK_VISIT', getVisitAttractions);
+    yield takeEvery('GET_ATTRACTIONS_FOR_PARK_VISIT', getVisitAttractions);
 }
 
 export default visitAttractionsSaga;
