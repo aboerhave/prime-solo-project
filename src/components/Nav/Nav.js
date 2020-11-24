@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
-// import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 
 const Nav = (props) => {
@@ -18,6 +18,7 @@ const Nav = (props) => {
         loginLinkData.text = 'Home';
     }
 
+    const history = useHistory();
 
     return (
 
@@ -38,8 +39,8 @@ const Nav = (props) => {
             )}
             
             <button className="nav-link bottom-left" 
-            // onClick={this.props.history.goBack()}
-            onClick={()=>props.history.goBack()}>
+                onClick={()=>history.goBack()}
+            >
                 Back
             </button>
             <Link className="nav-link bottom-right" to="/savedVisits">
@@ -47,6 +48,6 @@ const Nav = (props) => {
             </Link>
         </div>
     );
-};
+}
 
 export default connect(mapStoreToProps)(Nav);
