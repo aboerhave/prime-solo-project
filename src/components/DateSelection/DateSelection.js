@@ -43,6 +43,11 @@ class DateSelection extends Component {
     // at this point, date is past or current date => have user confirm
     // and send to database
     handleSubmit = () => {
+        // check to make sure there is a date selected at all
+        if(!this.state.date) {
+            alert('Please enter a date');
+            return;
+        }
         let inputDate = this.state.date;
         let inputYear = inputDate.slice(0,4);
         let inputMonth = inputDate.slice(5,7);
