@@ -114,3 +114,6 @@ input {
 .heading {
     text-align: center;
 }
+main {
+    margin: 15px;
+}

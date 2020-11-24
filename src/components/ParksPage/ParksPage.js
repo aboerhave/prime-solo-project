@@ -26,19 +26,9 @@ class ParksPage extends Component {
 
     render() {
         return (
-            // <Container>
             <>
-                <Container>
-                    <h2 >Parks</h2>
-                </Container>
-
-                <Container>
-                    <Row>
-                        <Col >
-                            <h4>Click a park to see a list of experiences there</h4>
-                        </Col>
-                    </Row>
-                </Container>
+                <h2 className="heading">Parks</h2>
+                <h4>Click a park to see a list of experiences there</h4>
                 <ul>
                     {this.props.store.parks.map((park) => {
                         return (
@@ -51,9 +41,6 @@ class ParksPage extends Component {
                         )
                     })}
                 </ul>
-             {/* </Container> */}
-             {JSON.stringify(this.props)}
-             <button onClick={()=>this.props.history.goBack()}>GO BACK</button>
             </>
         );
     }
