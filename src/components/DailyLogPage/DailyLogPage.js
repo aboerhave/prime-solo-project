@@ -10,7 +10,6 @@ class DailyLogPage extends Component {
     };
 
     componentDidMount = () => {
-        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
         
         this.props.dispatch({type: 'GET_FAVORITES'});
@@ -18,6 +17,7 @@ class DailyLogPage extends Component {
         // get the attractions at the chosen park
         this.props.dispatch({type: 'GET_ATTRACTIONS_FOR_PARK_VISIT', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
+        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
     }
 
     
