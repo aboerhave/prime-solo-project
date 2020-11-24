@@ -117,3 +117,8 @@ input {
 main {
     margin: 15px;
 }
+
+.disabledBtn {
+    opacity: .6;
+    cursor: not-allowed;
+}

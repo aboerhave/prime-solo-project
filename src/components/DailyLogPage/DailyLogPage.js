@@ -131,8 +131,20 @@ class DailyLogPage extends Component {
 
     handleCompleteVisit = () => {
         console.log('clicked', this.props.store.singleParkVisit.id);
-        this.props.dispatch({type: 'VISIT_COMPLETE', payload: this.props.store.singleParkVisit.id});
+        this.props.dispatch({
+            type: 'VISIT_COMPLETE', 
+            payload: this.props.store.singleParkVisit.id,
+            history: this.props.history,
+            location: '/previousVisitDetail'
+        });
     }
+
+    // this.props.dispatch({
+    //     type: 'ADD_DATE', 
+    //     payload: {date: inputDate, park: this.props.match.params.id}, 
+    //     history: this.props.history, 
+    //     location: '/dailyLog'
+    // });
 
     renderDate = (date) => {
         console.log('date', date);
@@ -169,7 +181,11 @@ class DailyLogPage extends Component {
                             {/* put button to increase here and then make button click functionality
                             different if the attraction is already in the quantity reducer, meaning it has 
                             already been ridden at least once */}
-                            <button onClick={()=>this.handleIncrementClick(attraction.id)}>Experienced Today</button>
+                            {!this.props.store.singleParkVisit.visit_complete ?
+                                <button onClick={()=>this.handleIncrementClick(attraction.id)}>Experienced Today</button>
+                            :
+                                <button className="disabledBtn">Experienced Today</button>
+                            }   
                             {this.renderQuantity(attraction.id)}
                         </li>
                     )
@@ -177,15 +193,28 @@ class DailyLogPage extends Component {
             </ul>
             <label htmlFor="notesBox">Additional Notes:</label>
                 <br/>
-                
-                <textarea id="notesBox" 
-                    onChange={(event) => this.handleNotesChange(event)} 
-                    value={this.state.notes}
-                >
-                </textarea>
-                <button onClick={this.handleNotesSave}>Save Notes</button>
-                <button onClick={this.handleCompleteVisit}>Complete Visit</button>
-                {JSON.stringify(this.state)}
+                {!this.props.store.singleParkVisit.visit_complete ?
+                    <>
+                        <textarea id="notesBox" 
+                            onChange={(event) => this.handleNotesChange(event)} 
+                            value={this.state.notes}
+                        />
+                        <button onClick={this.handleNotesSave}>Save Notes</button>
+                    </>
+                :
+                    <>
+                        <textarea id="notesBox" readOnly
+                            value={this.state.notes}
+                        />    
+                        <button className="disabledBtn">Save Notes</button>
+                    </>
+                }
+                {/* if the park visit is complete, "disable" the button */}
+                {!this.props.store.singleParkVisit.visit_complete ?
+                    <button onClick={this.handleCompleteVisit}>Complete Visit</button>
+                :
+                    <button className="disabledBtn">Complete Visit</button>
+                }
             </div>
         );
     }

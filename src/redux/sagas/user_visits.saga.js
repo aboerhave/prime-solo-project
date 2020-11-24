@@ -27,7 +27,9 @@ function* completeVisit (action) {
     console.log('in completeVisit function', action.payload);
     yield axios.put(`api/visitPark/${action.payload}`);
     // yield put({type: 'GET_ALL_VISITS_FOR_USER'})
-    yield put({type: 'SET_VISIT_PARK', payload: action.payload});
+    yield put({type: 'GET_VISIT_PARK', payload: action.payload});
+    let locationToGoTo = action.location + `/${action.payload}`;
+    yield action.history.push(locationToGoTo);
 }
 
 function* userVisitsSaga() {
