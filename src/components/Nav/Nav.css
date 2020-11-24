@@ -1,21 +1,40 @@
 .nav-title {
     font-size: 24px;
     font-weight: 700;
-    display: inline-block;
-    color: rgb(204, 15, 163);
-    padding-left: 10px;
+    display: block;
+    color: rgb(122, 14, 172);
+    position: relative;
+    top: 25px;
 }
 
 .nav {
-    margin: 0 0 30px;
-    background-color: rgb(255, 180, 40);
+    background-color: #fc8c0c;
     overflow: hidden;
+    position: relative;
+    height: 120px;
 }
 
 .nav-link {
-    float: left;
-    color: rgb(204, 15, 163);
-    background-color: rgb(255, 180, 40);
+    color: rgb(122, 14, 172);
+    background-color: #fc8c0c;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 15px;
+
+    /* these last two make the logout button in
+    the nav bar look like another link */
+    border:none;
+    cursor: pointer;
+    outline:0;
+}
+
+
+
+.nav-link-right {
+    /* float: right; */
+    color: rgb(122, 14, 172);
+    background-color: #fc8c0c;
     text-align: center;
     padding: 24px 10px;
     text-decoration: none;
@@ -28,10 +47,16 @@
     outline:0;
 }
 
-.nav-link:hover {
-    background-color: #008183;
+
+
+.top-left {
+    position: absolute;
+    top: 13px;
+    left: 4px;
 }
 
-.nav-right {
-    float: right;
+.top-right {
+    position: absolute;
+    top: 13px;
+    right: 4px;
 }

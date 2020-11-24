@@ -26,6 +26,8 @@ import DailyLogPage from '../DailyLogPage/DailyLogPage';
 import SavedVisitsPage from '../SavedVisitsPage/SavedVisitsPage';
 import PreviousVisitDetailPage from '../PreviousVisitDetailPage/PreviousVisitDetailPage';
 
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 

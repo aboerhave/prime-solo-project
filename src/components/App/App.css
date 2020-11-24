@@ -18,9 +18,9 @@ img {
 Container
 -------------------------------------------------------------------------------- */
 
-.container {
+/* .container {
     padding: 20px;
-}
+} */
 
 /* --------------------------------------------------------------------------------
 Button
@@ -109,4 +109,8 @@ Form Treatment
 input {
     margin: 5px;
     margin-bottom: 10px;
+}
+
+.heading {
+    text-align: center;
 }

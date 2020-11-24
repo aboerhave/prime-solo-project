@@ -18,9 +18,26 @@ const Nav = (props) => {
 
     return (
         <div className="nav">
-            <Link to="/parks">
-                <h2 className="nav-title">Parks and Coasters</h2>
-            </Link>
+    
+            <div className="heading">
+                <Link to="/parks">
+                    <h2 className="nav-title">Parks and Coasters</h2>
+                </Link>
+            </div>
+    
+            <div>
+                <Link className="nav-link top-left" to="/parks">
+                    Home
+                </Link>
+                {/* Show the link to the info page and the logout button if the user is logged in */}
+                    {props.store.user.id && (
+                    <LogOutButton className="nav-link top-right" />
+                )}
+            </div>
+            {/* This one is for the main name in the middle */}
+  
+
+
             <div className="nav-right">
                 <Link className="nav-link" to={loginLinkData.path}>
                     {/* Show this link if they are logged in or not,
@@ -28,19 +45,7 @@ const Nav = (props) => {
                     and call this link 'Login / Register' if they are not */}
                     {loginLinkData.text}
                 </Link>
-                {/* Show the link to the info page and the logout button if the user is logged in */}
-                {props.store.user.id && (
-                    <>
-                        <Link className="nav-link" to="/info">
-                            Info Page
-                        </Link>
-                        <LogOutButton className="nav-link" />
-                    </>
-                )}
-                {/* Always show this link since the about page is not protected */}
-                <Link className="nav-link" to="/about">
-                    About
-                </Link>
+
             </div>
         </div>
     );
