@@ -11,10 +11,6 @@ class SavedVisitsPage extends Component {
     }
 
     handleDelete = (visitId) => {
-        let accept = window.confirm('Are you sure you want to delete this entry?')
-        if (!accept) {
-            return
-        }
         console.log('visitId', visitId);
         let accept = window.confirm('Please confirm that you would like to delete this visit from the list');
         if(accept){
