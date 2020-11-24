@@ -150,7 +150,7 @@ class DailyLogPage extends Component {
     render() {
         return (
             <div>
-                <h2>Daily Log</h2>
+                <h2 className="heading">Daily Log</h2>
                 {this.props.store.singleParkVisit.date && 
                     <>
                     <h3>{this.props.store.singleParkVisit.name}</h3>
@@ -185,6 +185,7 @@ class DailyLogPage extends Component {
                 </textarea>
                 <button onClick={this.handleNotesSave}>Save Notes</button>
                 <button onClick={this.handleCompleteVisit}>Complete Visit</button>
+                {JSON.stringify(this.state)}
             </div>
         );
     }
