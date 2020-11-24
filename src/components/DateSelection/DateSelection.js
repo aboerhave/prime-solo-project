@@ -8,7 +8,6 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 // component.
 class DateSelection extends Component {
     state = {
-        heading: 'Date Selection',
         date: ''
     };
 
@@ -17,70 +16,62 @@ class DateSelection extends Component {
         this.props.dispatch({type: 'GET_SINGLE_PARK', payload: id});
     }
     
+    // when user picks a date, take it in and make sure it is not a future date
     handleChange = (event, input) => {
-        console.log('input', input);
-        this.setState({
-            date: event.target.value
-        })
+        let inputDate = event.target.value;
+        let inputYear = inputDate.slice(0,4);
+        let inputMonth = inputDate.slice(5,7);
+        let inputDateNumber = inputDate.slice(8,10);
+        let inputDateToCheck = new Date(inputYear, inputMonth - 1, inputDateNumber);
+        let currentDate = new Date();
+        // check to make sure the date selected is not in the future
+        console.log('inputDate', inputDate);
+        console.log('inputDateToCheck', inputDateToCheck);
+        console.log('date', currentDate);
+        // this one is for if they select a future date
+        // it should be an error
+        if (inputDateToCheck > currentDate) {
+            alert('The date may not be in the future');
+        }
+        else {   
+            this.setState({
+                date: inputDate
+            })
+        }
     }
     
+    // at this point, date is past or current date => have user confirm
+    // and send to database
     handleSubmit = () => {
-        console.log(this.state.date);
         let inputDate = this.state.date;
         let inputYear = inputDate.slice(0,4);
         let inputMonth = inputDate.slice(5,7);
         let inputDateNumber = inputDate.slice(8,10);
-        console.log('input date after i sliced it', inputYear + '-' + inputMonth + '-' + inputDateNumber);
-        
-        let date = new Date();
-        let currentYear = date.getFullYear();
-        let currentMonth = date.getMonth() + 1;
-        let currentDateNumber = date.getDate();
-        // make it match the way it is displayed from the input
-        let currentDate = currentYear + '-' + currentMonth + '-' + currentDateNumber;
-        console.log('currentDate', currentDate);
-        // check to make sure the date selected is not in the future
-        // check year first
-        if (inputYear > currentYear ) {
-            alert('The date may not be in the future');
-            return
-        }
-        else if (inputMonth > currentMonth) {
-            alert('The date may not be in the future');
-            return
-        }
-        else if (inputDateNumber > currentDateNumber) {
-            alert('The date may not be in the future');
+        let accept = window.confirm(`Please verify that you have selected the correct date for 
+        the visit to ${this.props.store.singlePark.name}: ${inputMonth}/${inputDateNumber}/${inputYear}`);
+        if (accept !== true) {
             return
         }
         else {
-            // at this point, date is past or current date => have user confirm
-            let accept = window.confirm(`Please verify that you have selected the correct date: ${inputMonth}/${inputDateNumber}/${inputYear}`);
-            if (accept !== true) {
-                return
-            }
-            else {
-                // user confirmed date is correct => send to database
-                
-                this.props.dispatch({type: 'ADD_DATE', 
+            // user confirmed date is correct => send to database
+            this.props.dispatch({
+                type: 'ADD_DATE', 
                 payload: {date: inputDate, park: this.props.match.params.id}, 
                 history: this.props.history, 
-                location: '/dailyLog'});
-            }
+                location: '/dailyLog'
+            });
         }        
     }
 
     render() {
         return (
             <div>
-                <h2>{this.state.heading}</h2>
+                <h2>Daily Log</h2>
                 <h2>Select a date for a visit to {this.props.store.singlePark.name}</h2>
                 <label for="parkVisitDate">Park Visit Date (MM/DD/YYYY):</label>
-                <input onChange={(event) => this.handleChange(event, 'date')} type="date" id="birthday" name="parkVisitDate" />
+                <input onChange={(event) => this.handleChange(event, 'date')} type="date" id="visitDate" name="parkVisitDate" />
                 <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
-                {JSON.stringify(this.state)}
                 <br/>
-                {JSON.stringify(this.props)}
             </div>
         );
     }

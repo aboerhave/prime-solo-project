@@ -19,7 +19,7 @@ function* getVisitAttractions(action) {
 function* visitAttractionsSaga() {
     console.log('in attractionsSaga');
     
-    yield takeEvery('GET_ATTRACTIONS_FOR PARK_VISIT', getVisitAttractions);
+    yield takeEvery('GET_ATTRACTIONS_FOR_PARK_VISIT', getVisitAttractions);
 }
 
 export default visitAttractionsSaga;
