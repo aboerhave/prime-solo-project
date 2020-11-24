@@ -52,6 +52,8 @@ class ParksPage extends Component {
                     })}
                 </ul>
              {/* </Container> */}
+             {JSON.stringify(this.props)}
+             {/* <button onClick={()=>this.props.history.goBack()}>GO BACK</button> */}
             </>
         );
     }

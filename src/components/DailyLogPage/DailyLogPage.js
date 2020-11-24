@@ -175,7 +175,7 @@ class DailyLogPage extends Component {
                     )
                 })}
             </ul>
-            <label for="notesBox">Additional Notes:</label>
+            <label htmlFor="notesBox">Additional Notes:</label>
                 <br/>
                 
                 <textarea id="notesBox" 
