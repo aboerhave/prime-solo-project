@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import './Nav.css';
+import './Nav.scss';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import {useHistory} from 'react-router-dom';
 
@@ -34,9 +34,13 @@ const Nav = (props) => {
                 Home
             </Link>
             {/* Show the logout button if the user is logged in */}
-                {props.store.user.id && (
+            {props.store.user.id ? 
                 <LogOutButton className="nav-link top-right" />
-            )}
+            :
+                <Link className="nav-link top-right" to="/login" >
+                    Login / Register
+                </Link>
+            }
             
             <button className="nav-link bottom-left" 
                 onClick={()=>history.goBack()}

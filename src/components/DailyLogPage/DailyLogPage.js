@@ -139,13 +139,6 @@ class DailyLogPage extends Component {
         });
     }
 
-    // this.props.dispatch({
-    //     type: 'ADD_DATE', 
-    //     payload: {date: inputDate, park: this.props.match.params.id}, 
-    //     history: this.props.history, 
-    //     location: '/dailyLog'
-    // });
-
     renderDate = (date) => {
         console.log('date', date);
         let month = date.slice(5, 7);
@@ -182,9 +175,9 @@ class DailyLogPage extends Component {
                             different if the attraction is already in the quantity reducer, meaning it has 
                             already been ridden at least once */}
                             {!this.props.store.singleParkVisit.visit_complete ?
-                                <button onClick={()=>this.handleIncrementClick(attraction.id)}>Experienced Today</button>
+                                <button onClick={()=>this.handleIncrementClick(attraction.id)} className="wordButton">Experienced Today</button>
                             :
-                                <button className="disabledBtn">Experienced Today</button>
+                                <button className="disabledBtn wordButton">Experienced Today</button>
                             }   
                             {this.renderQuantity(attraction.id)}
                         </li>
@@ -199,21 +192,21 @@ class DailyLogPage extends Component {
                             onChange={(event) => this.handleNotesChange(event)} 
                             value={this.state.notes}
                         />
-                        <button onClick={this.handleNotesSave}>Save Notes</button>
+                        <button onClick={this.handleNotesSave} className="wordButton">Save Notes</button>
                     </>
                 :
                     <>
                         <textarea id="notesBox" readOnly
                             value={this.state.notes}
                         />    
-                        <button className="disabledBtn">Save Notes</button>
+                        <button className="disabledBtn wordButton">Save Notes</button>
                     </>
                 }
                 {/* if the park visit is complete, "disable" the button */}
                 {!this.props.store.singleParkVisit.visit_complete ?
-                    <button onClick={this.handleCompleteVisit}>Complete Visit</button>
+                    <button onClick={this.handleCompleteVisit} className="wordButton">Complete Visit</button>
                 :
-                    <button className="disabledBtn">Complete Visit</button>
+                    <button className="disabledBtn woredButton">Complete Visit</button>
                 }
             </div>
         );

@@ -27,12 +27,12 @@ class AttractionsPage extends Component {
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
             console.log('yes');
             return(
-                <button onClick={()=>this.handleClickOff(attractionId)}><span role="img" aria-labelledby="orange heart">🧡</span></button>
+                <button className="heartButton" onClick={()=>this.handleClickOff(attractionId)}><span role="img" className="heart" aria-labelledby="orange heart">🧡</span></button>
             )
         }
         else {
             return(
-                <button onClick={()=>this.handleClickOn(attractionId)}><span role="img" aria-labelledby="white heart">🤍</span></button>
+                <button className="heartButton" onClick={()=>this.handleClickOn(attractionId)}><span role="img" className="heart" aria-labelledby="white heart">🤍</span></button>
             )
         }
     }
@@ -74,17 +74,25 @@ class AttractionsPage extends Component {
         const { id } = this.props.match.params;
         return (
             <div>
-                <button onClick={()=>this.toDateSelection(id)}>Make a New Record For a Visit to this Park</button>
-                <h2 className="heading">{this.props.store.singlePark.name}</h2>
+                {/* div puts the content in the center horizontally */}
+                <div className="heading">
+                    <button 
+                        className="wordButton"
+                        onClick={()=>this.toDateSelection(id)}
+                    >
+                        Make a New Record<br/> For a Visit to this Park
+                    </button>
+                <h2>{this.props.store.singlePark.name}</h2>
                 <h3>Attractions</h3>
+                </div>
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
                         return(
                             <li key={attraction.id} >
-                                {attraction.name}
-                                {this.renderFavorite(attraction.id)}
-
+                                <p>{attraction.name}
+                                    {this.renderFavorite(attraction.id)}
+                                </p>
                             </li>
                         )
                     })}

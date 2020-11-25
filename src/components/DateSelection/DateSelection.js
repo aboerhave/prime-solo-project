@@ -70,12 +70,14 @@ class DateSelection extends Component {
 
     render() {
         return (
-            <div>
+            <div className="heading">
                 <h2>Daily Log</h2>
                 <h2>Select a date for a visit to {this.props.store.singlePark.name}</h2>
                 <label for="parkVisitDate">Park Visit Date (MM/DD/YYYY):</label>
                 <input onChange={(event) => this.handleChange(event, 'date')} type="date" id="visitDate" name="parkVisitDate" />
-                <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
+                <button className="wordButton" onClick={this.handleSubmit}>
+                    Begin Record for this Date at {this.props.store.singlePark.name}
+                </button>
                 <br/>
             </div>
         );
