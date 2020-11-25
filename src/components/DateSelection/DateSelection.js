@@ -43,6 +43,11 @@ class DateSelection extends Component {
     // at this point, date is past or current date => have user confirm
     // and send to database
     handleSubmit = () => {
+        // check to make sure there is a date selected at all
+        if(!this.state.date) {
+            alert('Please enter a date');
+            return;
+        }
         let inputDate = this.state.date;
         let inputYear = inputDate.slice(0,4);
         let inputMonth = inputDate.slice(5,7);
@@ -65,12 +70,14 @@ class DateSelection extends Component {
 
     render() {
         return (
-            <div>
+            <div className="heading">
                 <h2>Daily Log</h2>
                 <h2>Select a date for a visit to {this.props.store.singlePark.name}</h2>
                 <label for="parkVisitDate">Park Visit Date (MM/DD/YYYY):</label>
                 <input onChange={(event) => this.handleChange(event, 'date')} type="date" id="visitDate" name="parkVisitDate" />
-                <button onClick={this.handleSubmit}>Begin Record for this Date at {this.props.store.singlePark.name}</button>
+                <button className="wordButton" onClick={this.handleSubmit}>
+                    Begin Record for this Date at {this.props.store.singlePark.name}
+                </button>
                 <br/>
             </div>
         );

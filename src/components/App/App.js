@@ -28,7 +28,7 @@ import PreviousVisitDetailPage from '../PreviousVisitDetailPage/PreviousVisitDet
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './App.css';
+import './App.scss';
 
 
 class App extends Component {

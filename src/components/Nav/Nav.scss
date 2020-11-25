@@ -1,22 +1,24 @@
+@import '../../index.scss';
+
 .nav-title {
     font-size: 24px;
     font-weight: 700;
     display: inline-block;
-    color: rgb(79, 17, 121);
+    color: $secondary;
     position: relative;
     top: 20px;
 }
 
 .nav {
-    background-color: #fc8c0c;
+    background-color: $primary;
     overflow: hidden;
     position: relative;
     height: 120px;
 }
 
 .nav-link {
-    color: rgb(79, 17, 121);
-    background-color: #fc8c0c;
+    color: $secondary;
+    background-color: $primary;
     text-align: center;
     text-decoration: none;
     font-size: 15px;
@@ -53,3 +55,4 @@
     top: 75px;
     right: 14px;
 }
+

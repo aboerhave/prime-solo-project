@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
         res.sendStatus(403);
     }
     else {  // authenticated
-        let queryText = `select park_visits.id, park_id, name, date, city, state from park_visits
+        let queryText = `select park_visits.id, park_id, name, date, city, state, visit_complete from park_visits
         join parks on parks.id = park_visits.park_id
         where park_visits.id = $1
         and user_id = $2`;
