@@ -19,7 +19,7 @@ class PreviousVisitDetailPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="center">
                 <h2>Details</h2>
                 {this.props.store.singleParkVisit.date &&
                 <>

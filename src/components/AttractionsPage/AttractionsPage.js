@@ -73,9 +73,7 @@ class AttractionsPage extends Component {
     render() {
         const { id } = this.props.match.params;
         return (
-            <div>
-                {/* div puts the content in the center horizontally */}
-                <div className="center">
+            <div className="center">
                     <button 
                         className="wordButton"
                         onClick={()=>this.toDateSelection(id)}
@@ -84,14 +82,14 @@ class AttractionsPage extends Component {
                     </button>
                 <h2>{this.props.store.singlePark.name}</h2>
                 <h3>Attractions</h3>
-                </div>
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
                         return(
                             <li key={attraction.id} >
-                                <p>{attraction.name}
+                                <p>
                                     {this.renderFavorite(attraction.id)}
+                                    {attraction.name}
                                 </p>
                             </li>
                         )

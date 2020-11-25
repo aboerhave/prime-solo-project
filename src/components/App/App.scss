@@ -169,6 +169,11 @@ li {
     // border: 1px solid black;
     padding-bottom: 15px;
 }
+.savedVisitsList {
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
 ul {
     padding: 0;
 }
@@ -177,4 +182,13 @@ ul {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 12px;
     font-size: 14px;
+}
+
+.deleteButton {
+    background-color: $primary;
+    color: $secondary;
+    font-size: .8em;
+    padding: 5px;
+    margin: 4px;
+    border-radius: 6px;
 }

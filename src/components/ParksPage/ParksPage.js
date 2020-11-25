@@ -35,7 +35,7 @@ class ParksPage extends Component {
                             <li key={park.id} >
                                 <Link to={`/attractions/${park.id}`} >
                                     
-                                    {park.name}
+                                    {park.name} - {park.city}, {park.state}
                                 </Link>
                             </li>
                         )

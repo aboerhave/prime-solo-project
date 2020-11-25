@@ -38,15 +38,15 @@ class SavedVisitsPage extends Component {
                         let fullDate = visit.date.slice(0,10)
                         let displayDate = fullDate.slice(5,7) + '/' + fullDate.slice(8,11) + '/' + fullDate.slice(0, 4);
                         return (
-                            <li key = {visit.id}>
-                                <h5>{displayDate} {visit.name}</h5>
-                                <h5>{visit.city}, {visit.state}</h5>
+                            <li key = {visit.id} className="savedVisitsList">
+                                <h4>{displayDate} {visit.name}<br/>
+                                {visit.city}, {visit.state}</h4>
                                 {visit.visit_complete ? 
                                 <button onClick={()=>this.handleDisplay(visit.id)} className="wordButton">See Visit Details</button>
                                 :
                                 <button onClick={()=>this.handleEdit(visit.id)} className="wordButton">Edit Visit</button>
                                 }
-                                <button onClick={()=>this.handleDelete(visit.id)} className="wordButton">Delete Entry</button>
+                                <button onClick={()=>this.handleDelete(visit.id)} className="deleteButton">Delete Entry</button>
                             </li>
                         )
                     })}
