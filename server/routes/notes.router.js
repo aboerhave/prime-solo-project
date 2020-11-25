@@ -1,9 +1,10 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // get route for getting notes already stored
-router.get('/:parkVisitId', (req, res) => {
+router.get('/:parkVisitId', rejectUnauthenticated, (req, res) => {
     console.log('get notes route with parkVisitId', req.params.parkVisitId);
     
     let queryText = `select notes from park_visits
@@ -18,10 +19,8 @@ router.get('/:parkVisitId', (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-router.post('/:parkVisitId', (req, res) => {
+// pot route for posting new note(s) to park visit
+router.post('/:parkVisitId', rejectUnauthenticated, (req, res) => {
     console.log('req.body', req.body.notes);
     
     let queryText = `update park_visits

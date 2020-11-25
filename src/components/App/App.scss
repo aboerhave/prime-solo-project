@@ -146,12 +146,16 @@ main {
 
 .heartButton {
     font-size: .8em;
-    // height: 40px;
-
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: transparent;
 }
 
 .heart {
     // height: 30px;
-    display: inline-block;
+    // display: inline-block;
     // margin-top: 30px;
+    margin: auto;
+    font-size: 20px;
 }
