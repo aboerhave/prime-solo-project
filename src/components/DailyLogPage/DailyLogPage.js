@@ -37,12 +37,12 @@ class DailyLogPage extends Component {
         // in the list of attractionIds in the favorite table
         if(this.props.store.favorites.some(attraction => attraction.attraction_id === attractionId)){
             return(
-                <button onClick={()=>this.handleClickOff(attractionId)}><span role="img" aria-labelledby="orange heart">🧡</span></button>
+                <button onClick={()=>this.handleClickOff(attractionId)} className="heartButton"><span role="img" className="heart" aria-labelledby="orange heart">🧡</span></button>
             )
         }
         else {
             return(
-                <button onClick={()=>this.handleClickOn(attractionId)}><span role="img" aria-labelledby="white heart">🤍</span></button>
+                <button onClick={()=>this.handleClickOn(attractionId)} className="heartButton"><span role="img" className="heart" aria-labelledby="white heart">🤍</span></button>
             )
         }
     }
@@ -154,37 +154,37 @@ class DailyLogPage extends Component {
 
     render() {
         return (
-            <div>
-                <h2 className="heading">Daily Log</h2>
-                {this.props.store.singleParkVisit.date && 
-                    <>
-                    <h3>{this.props.store.singleParkVisit.name}</h3>
-                    {this.renderDate(this.props.store.singleParkVisit.date)}
-                    </>
-                }
-                <ul>
+            <div className="center">
+                <h2>Daily Log</h2>
+                    {this.props.store.singleParkVisit.date && 
+                        <>
+                        <h3>{this.props.store.singleParkVisit.name}</h3>
+                        {this.renderDate(this.props.store.singleParkVisit.date)}
+                        </>
+                    }
+                <ul className="logList">
                     {/* put list of attractions here */}
                     {this.props.store.visitAttractions.map((attraction) => {
-                    return(
-                        <li key={attraction.id} >
-                            {attraction.name}
-                            <br/>
+                        return(
+                            <li key={attraction.id} className="logList">
+                                {this.renderFavorite(attraction.id)}
+                                {attraction.name}
+                                <br/>
                             
-                            {this.renderFavorite(attraction.id)}
-                            {/* put button to increase here and then make button click functionality
-                            different if the attraction is already in the quantity reducer, meaning it has 
-                            already been ridden at least once */}
-                            {!this.props.store.singleParkVisit.visit_complete ?
-                                <button onClick={()=>this.handleIncrementClick(attraction.id)} className="wordButton">Experienced Today</button>
-                            :
-                                <button className="disabledBtn wordButton">Experienced Today</button>
-                            }   
+                                {/* put button to increase here and then make button click functionality
+                                different if the attraction is already in the quantity reducer, meaning it has 
+                                already been ridden at least once */}
+                                {!this.props.store.singleParkVisit.visit_complete ?
+                                    <button onClick={()=>this.handleIncrementClick(attraction.id)} className="wordButton">Experienced Today</button>
+                                :
+                                    <button className="disabledBtn wordButton">Experienced Today</button>
+                                }   
                             {this.renderQuantity(attraction.id)}
-                        </li>
-                    )
-                })}
-            </ul>
-            <label htmlFor="notesBox">Additional Notes:</label>
+                            </li>
+                        )
+                    })}
+                </ul>
+                <label htmlFor="notesBox">Additional Notes:</label>
                 <br/>
                 {!this.props.store.singleParkVisit.visit_complete ?
                     <>

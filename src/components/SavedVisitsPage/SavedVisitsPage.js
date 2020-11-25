@@ -31,7 +31,7 @@ class SavedVisitsPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="center">
                 <h2>Saved Visits</h2>
                 <ul>
                     {this.props.store.userVisits.map((visit) => {
@@ -42,11 +42,11 @@ class SavedVisitsPage extends Component {
                                 <h5>{displayDate} {visit.name}</h5>
                                 <h5>{visit.city}, {visit.state}</h5>
                                 {visit.visit_complete ? 
-                                <button onClick={()=>this.handleDisplay(visit.id)}>See Visit Details</button>
+                                <button onClick={()=>this.handleDisplay(visit.id)} className="wordButton">See Visit Details</button>
                                 :
-                                <button onClick={()=>this.handleEdit(visit.id)}>Edit Visit</button>
+                                <button onClick={()=>this.handleEdit(visit.id)} className="wordButton">Edit Visit</button>
                                 }
-                                <button onClick={()=>this.handleDelete(visit.id)}>Delete Entry</button>
+                                <button onClick={()=>this.handleDelete(visit.id)} className="wordButton">Delete Entry</button>
                             </li>
                         )
                     })}

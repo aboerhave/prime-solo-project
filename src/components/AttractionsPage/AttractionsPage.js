@@ -75,7 +75,7 @@ class AttractionsPage extends Component {
         return (
             <div>
                 {/* div puts the content in the center horizontally */}
-                <div className="heading">
+                <div className="center">
                     <button 
                         className="wordButton"
                         onClick={()=>this.toDateSelection(id)}

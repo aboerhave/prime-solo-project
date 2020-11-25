@@ -113,11 +113,11 @@ input {
     margin-bottom: 10px;
 }
 /* ------------------------------------------------------------- */
-.heading {
+.center {
     text-align: center;
 }
 main {
-    margin: 15px;
+    margin: 20px;
 }
 
 // button {
@@ -140,8 +140,9 @@ main {
     background-color: $secondary;
     color: $third;
     font-size: .8em;
-    padding: 3px;
-
+    padding: 5px;
+    margin: 4px;
+    border-radius: 6px;
 }
 
 .heartButton {
@@ -158,4 +159,22 @@ main {
     // margin-top: 30px;
     margin: auto;
     font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.logList {
+    // border: 1px solid black;
+    padding-bottom: 15px;
+}
+ul {
+    padding: 0;
+}
+
+#visitDate {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 12px;
+    font-size: 14px;
 }

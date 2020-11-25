@@ -26,8 +26,8 @@ class ParksPage extends Component {
 
     render() {
         return (
-            <>
-                <h2 className="heading">Parks</h2>
+            <div className="center">
+                <h2>Parks</h2>
                 <h4>Click a park to see a list of experiences there</h4>
                 <ul>
                     {this.props.store.parks.map((park) => {
@@ -41,7 +41,7 @@ class ParksPage extends Component {
                         )
                     })}
                 </ul>
-            </>
+            </div>
         );
     }
 }
