@@ -6,14 +6,20 @@
     display: inline-block;
     color: $secondary;
     position: relative;
-    top: 20px;
 }
 
-.nav {
+.navOn {
     background-color: $primary;
     overflow: hidden;
     position: relative;
     height: 120px;
+}
+
+.navOff {
+    background-color: $primary;
+    overflow: hidden;
+    position: relative;
+    height: 75px;
 }
 
 .nav-link {
@@ -28,31 +34,10 @@
     border:none;
     cursor: pointer;
     outline:0;
+    display: inline-block;
+    // width: 25%;
+    padding: 2px 19px;
 }
 
 
-
-.top-left {
-    position: absolute;
-    top: 17px;
-    left: 14px;
-}
-
-.top-right {
-    position: absolute;
-    top: 17px;
-    right: 14px;
-}
-
-.bottom-left {
-    position: absolute;
-    top: 75px;
-    left: 14px;
-}
-
-.bottom-right {
-    position: absolute;
-    top: 75px;
-    right: 14px;
-}
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
@@ -8,48 +8,45 @@ import {useHistory} from 'react-router-dom';
 
 
 const Nav = (props) => {
-    let loginLinkData = {
-        path: '/login',
-        text: 'Login / Register',
-    };
-
-    if (props.store.user.id != null) {
-        loginLinkData.path = '/parks';
-        loginLinkData.text = 'Home';
-    }
 
     const history = useHistory();
 
-    return (
+    let navClass = 'navOn';
+    if (props.store.user.id == null) {
+        navClass = "navOff"
+    }
 
-        <div className="nav">
+    return (
+        <div className={navClass}>
             {/* This one is for the main name in the middle */}
             <div className="center">
                 <Link to="/parks">
                     <h2 className="nav-title">Parks & Coasters</h2>
                 </Link>
             </div>
-    
-            <Link className="nav-link top-left" to="/parks">
-                Home
-            </Link>
-            {/* Show the logout button if the user is logged in */}
-            {props.store.user.id ? 
-                <LogOutButton className="nav-link top-right" />
-            :
-                <Link className="nav-link top-right" to="/login" >
-                    Login / Register
-                </Link>
+
+            {/* ROW OF LINKS should show up if user is logged in */}
+            {props.store.user.id &&
+                <div>
+                    <button className="nav-link" 
+                        onClick={()=>history.goBack()}
+                    >
+                        Back
+                    </button>
+
+                    <Link className="nav-link" to="/parks">
+                        Home
+                    </Link>
+
+                    <Link className="nav-link" to="/savedVisits">
+                        Saved Visits
+                    </Link>
+                    
+                    {/* Show the logout button if the user is logged in */}
+                    <LogOutButton className="nav-link" />
+
+                </div>
             }
-            
-            <button className="nav-link bottom-left" 
-                onClick={()=>history.goBack()}
-            >
-                Back
-            </button>
-            <Link className="nav-link bottom-right" to="/savedVisits">
-                Saved Visits
-            </Link>
         </div>
     );
 }
