@@ -148,7 +148,7 @@ class DailyLogPage extends Component {
         let year = date.slice(0, 4);
         console.log('year', year);
         return (
-            <h3>{month}/{dayNumber}/{year}</h3>
+            <>{month}/{dayNumber}/{year}</>
         )
     }
 
@@ -158,11 +158,12 @@ class DailyLogPage extends Component {
                 <h2>Daily Log</h2>
                     {this.props.store.singleParkVisit.date && 
                         <>
-                        <h3>{this.props.store.singleParkVisit.name}</h3>
-                        {this.renderDate(this.props.store.singleParkVisit.date)}
+                        <h3>{this.props.store.singleParkVisit.name}
+                        <br/>
+                        {this.renderDate(this.props.store.singleParkVisit.date)}</h3>
                         </>
                     }
-                <ul className="logList">
+                <ul>
                     {/* put list of attractions here */}
                     {this.props.store.visitAttractions.map((attraction) => {
                         return(
@@ -192,21 +193,21 @@ class DailyLogPage extends Component {
                             onChange={(event) => this.handleNotesChange(event)} 
                             value={this.state.notes}
                         />
-                        <button onClick={this.handleNotesSave} className="wordButton">Save Notes</button>
+                        <button onClick={this.handleNotesSave} className="wordButton saveNotesButton">Save Notes</button>
                     </>
                 :
                     <>
                         <textarea id="notesBox" readOnly
                             value={this.state.notes}
                         />    
-                        <button className="disabledBtn wordButton">Save Notes</button>
+                        <button className="disabledBtn wordButton saveNotesButton">Save Notes</button>
                     </>
                 }
                 {/* if the park visit is complete, "disable" the button */}
                 {!this.props.store.singleParkVisit.visit_complete ?
-                    <button onClick={this.handleCompleteVisit} className="wordButton">Complete Visit</button>
+                    <button onClick={this.handleCompleteVisit} className="wordButton warningButton">Complete Visit</button>
                 :
-                    <button className="disabledBtn woredButton">Complete Visit</button>
+                    <button className="disabledBtn wordButton warningButton">Complete Visit</button>
                 }
             </div>
         );

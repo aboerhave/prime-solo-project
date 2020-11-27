@@ -81,12 +81,12 @@ class AttractionsPage extends Component {
                         Make a New Record<br/> For a Visit to this Park
                     </button>
                 <h2>{this.props.store.singlePark.name}</h2>
-                <h3>Attractions</h3>
+                <h3>Experiences</h3>
                 <ul>
                     {/* put list of attractions here */}
                     {this.props.store.attractions.map((attraction) => {
                         return(
-                            <li key={attraction.id} >
+                            <li key={attraction.id} className="attrList">
                                 <p>
                                     {this.renderFavorite(attraction.id)}
                                     {attraction.name}

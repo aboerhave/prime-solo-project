@@ -27,7 +27,6 @@ import PreviousVisitDetailPage from '../PreviousVisitDetailPage/PreviousVisitDet
 
 import './App.scss';
 
-
 class App extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_USER' });

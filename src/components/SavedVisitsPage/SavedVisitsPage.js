@@ -45,7 +45,7 @@ class SavedVisitsPage extends Component {
                                 :
                                 <button onClick={()=>this.handleEdit(visit.id)} className="wordButton">Edit Visit</button>
                                 }
-                                <button onClick={()=>this.handleDelete(visit.id)} className="deleteButton">Delete Entry</button>
+                                <button onClick={()=>this.handleDelete(visit.id)} className="warningButton">Delete Entry</button>
                             </li>
                         )
                     })}
