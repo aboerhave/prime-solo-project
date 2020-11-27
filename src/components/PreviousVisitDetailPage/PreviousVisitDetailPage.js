@@ -10,7 +10,6 @@ class PreviousVisitDetailPage extends Component {
 
 
     componentDidMount = () => {
-        this.props.dispatch({type: 'GET_VISIT_DETAILS', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id});
