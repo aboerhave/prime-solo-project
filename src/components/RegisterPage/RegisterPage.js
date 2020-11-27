@@ -13,12 +13,12 @@ class RegisterPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="center">
                 <RegisterForm />
                 <center>
                     <button
                         type="button"
-                        className="btn btn_asLink wordButton"
+                        className="wordButton"
                         onClick={() => {
                             this.props.history.push('/login');
                         }}
