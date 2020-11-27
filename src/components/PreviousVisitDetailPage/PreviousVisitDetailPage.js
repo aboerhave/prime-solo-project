@@ -23,8 +23,8 @@ class PreviousVisitDetailPage extends Component {
                 <h2>Details</h2>
                 {this.props.store.singleParkVisit.date &&
                 <>
-                    <h3>{this.props.store.singleParkVisit.name}</h3> 
-                    <h3>{this.props.store.singleParkVisit.city}, {this.props.store.singleParkVisit.state}</h3>
+                    <h3>{this.props.store.singleParkVisit.name}<br/>
+                    {this.props.store.singleParkVisit.city}, {this.props.store.singleParkVisit.state}</h3>
                     <h3>{this.props.store.singleParkVisit.date.slice(5,7) + '/' 
                     + this.props.store.singleParkVisit.date.slice(8,10) + '/'
                     + this.props.store.singleParkVisit.date.slice(0,4)}</h3>

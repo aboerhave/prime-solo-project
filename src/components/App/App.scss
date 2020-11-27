@@ -170,8 +170,13 @@ li {
     padding-bottom: 15px;
 }
 .savedVisitsList {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     border-bottom: 1px solid black;
+}
+
+.savedVisitsList:last-child {
+    padding-bottom: 10px;
+    border-bottom: none;
 }
 
 ul {
@@ -191,4 +196,8 @@ ul {
     padding: 5px;
     margin: 4px;
     border-radius: 6px;
+}
+
+.parkLink {
+    text-decoration: none;
 }
