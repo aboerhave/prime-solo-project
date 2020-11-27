@@ -7,7 +7,8 @@ body,
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: fantasy;
     margin: 0px;
 }
 
@@ -108,7 +109,8 @@ li {
 
 .attrList {
     padding-bottom: 5px;
-    border-bottom: 1px solid black;    
+    border-bottom: 1px solid black;   
+    color: $fourth; 
 }
 
 .attrList:last-child {
@@ -117,8 +119,10 @@ li {
 }
 
 .logList {
+    padding-top: 10px;
     padding-bottom: 15px;
     border-bottom: 1px solid black;
+    color: $fourth;
 }
 
 .logList:last-child {
@@ -129,6 +133,7 @@ li {
 .savedVisitsList {
     padding-bottom: 20px;
     border-bottom: 1px solid black;
+    color: $fourth;
 }
 
 .savedVisitsList:last-child {
@@ -157,6 +162,7 @@ ul {
 
 .parkLink {
     text-decoration: none;
+    color: $fourth;
 }
 
 #notesBox {
