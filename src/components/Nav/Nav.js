@@ -24,7 +24,7 @@ const Nav = (props) => {
 
         <div className="nav">
             {/* This one is for the main name in the middle */}
-            <div className="heading">
+            <div className="center">
                 <Link to="/parks">
                     <h2 className="nav-title">Parks & Coasters</h2>
                 </Link>

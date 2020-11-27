@@ -36,7 +36,7 @@ create table park_visits (
 	id serial primary key,
 	user_id int references users,
 	date date,
-	notes text,
+	notes text default '',
 	visit_complete boolean default false,
     park_id int references parks
 );

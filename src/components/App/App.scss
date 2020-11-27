@@ -113,11 +113,11 @@ input {
     margin-bottom: 10px;
 }
 /* ------------------------------------------------------------- */
-.heading {
+.center {
     text-align: center;
 }
 main {
-    margin: 15px;
+    margin: 20px;
 }
 
 // button {
@@ -140,18 +140,64 @@ main {
     background-color: $secondary;
     color: $third;
     font-size: .8em;
-    padding: 3px;
-
+    padding: 5px;
+    margin: 4px;
+    border-radius: 6px;
 }
 
 .heartButton {
     font-size: .8em;
-    // height: 40px;
-
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: transparent;
 }
 
 .heart {
     // height: 30px;
-    display: inline-block;
+    // display: inline-block;
     // margin-top: 30px;
+    margin: auto;
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.logList {
+    // border: 1px solid black;
+    padding-bottom: 15px;
+}
+.savedVisitsList {
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+}
+
+.savedVisitsList:last-child {
+    padding-bottom: 10px;
+    border-bottom: none;
+}
+
+ul {
+    padding: 0;
+}
+
+#visitDate {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.deleteButton {
+    background-color: $primary;
+    color: $secondary;
+    font-size: .8em;
+    padding: 5px;
+    margin: 4px;
+    border-radius: 6px;
+}
+
+.parkLink {
+    text-decoration: none;
 }
