@@ -15,7 +15,6 @@ class RegisterPage extends Component {
         return (
             <div>
                 <RegisterForm />
-
                 <center>
                     <button
                         type="button"
