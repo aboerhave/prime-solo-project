@@ -112,7 +112,10 @@ class DailyLogPage extends Component {
         // this part puts words on the page to say that the ride has been ridden
         // only if that quantity is greater than 0
         if (this.props.store.attractionsQuantity.some(attraction => attraction.attractions_id === attractionId)) {
+            // this next line finds the object where the attractionId checked for matches attractionsQuantity
             let attractionsQuantityIndex = this.props.store.attractionsQuantity.find(attraction => attraction.attractions_id === attractionId);
+            console.log('attractionsQuantityIndex', attractionsQuantityIndex);
+            
             let attractionsQuantity = attractionsQuantityIndex.times_ridden
             // this part just does conditional rendering to change 1 time
             // to multiple times when greater than 1

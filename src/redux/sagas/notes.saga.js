@@ -21,6 +21,8 @@ function* saveNotes(action) {
         console.log('in saveNotes function with parkVisitId', action.payload.visitId);
         yield axios.post(`/api/visitNotes/${action.payload.visitId}`, action.payload);
         yield put({type: 'GET_NOTES', payload: action.payload.visitId});    
+        // give user feedback that the notes were successfully saved
+        alert('Notes have been saved.')
     }
     catch (error){
         console.log('error in saveNotes function', error);
