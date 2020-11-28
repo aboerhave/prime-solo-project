@@ -19,7 +19,7 @@ class DailyLogPage extends Component {
     };
 
     componentDidMount = () => {
-        // get park user is storing visit for
+        // get all park visit details for this visit being edited
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
         // get user's saved favorites
         this.props.dispatch({type: 'GET_FAVORITES'});
@@ -86,16 +86,18 @@ class DailyLogPage extends Component {
         console.log('ridden today clicked for attraction id', attractionId);
         // check to see if the attraction has been ridden yet and is in the attractionsQuantity
         // reducer to know if post or put is needed
+        // first case - already ridden, and in attractionsQuantity reducer, so put needed
         if (this.props.store.attractionsQuantity.some(attraction => attraction.attractions_id === attractionId)) {
-            console.log('this is in the already ridden list => can increase');
+            // console.log('this is in the already ridden list => can increase');
             let dataToSend = {
                 parkVisitId: this.props.store.singleParkVisit.id,
                 attraction: attractionId
             }
             this.props.dispatch({type: 'ADD_ONE_RIDE', payload: dataToSend});
         }
+        // second case - not in attractions Quantity reducer yet, so post needed for attraction
         else {
-            console.log('not ridden yet => need post');
+            // console.log('not ridden yet => need post');
             let dataToSend = {
                 parkVisitId: this.props.store.singleParkVisit.id,
                 attraction: attractionId
@@ -104,6 +106,8 @@ class DailyLogPage extends Component {
         }
     }
 
+    // display the number of times the user has experienced the attraction during the day, based on times_ridden
+    // for the attraction in the visits_attractions database
     renderQuantity = (attractionId) => {
         // this part puts words on the page to say that the ride has been ridden
         // only if that quantity is greater than 0
@@ -113,27 +117,28 @@ class DailyLogPage extends Component {
             // this part just does conditional rendering to change 1 time
             // to multiple times when greater than 1
             if (attractionsQuantity == 1) {
-
                 return (
-                    <p>1 time experienced today</p>
+                    <p>experienced 1 time today</p>
                 )
             }
             else {
                 return (
-                    <p>{attractionsQuantity} times experienced today</p>
+                    <p>experience {attractionsQuantity} times today</p>
                 )
             }
         }
     }
 
+    // update the text typed in the notes box to go to the value of notes in local state
     handleNotesChange = (event) => {
         this.setState({
             notes: event.target.value
         })
     }
 
+    // save notes that are in local state and send to database
     handleNotesSave = () => {
-        console.log('save clicked');
+        console.log('notes save clicked');
         let dataToSend = {
             notes: this.state.notes,
             visitId: this.props.store.singleParkVisit.id
@@ -141,16 +146,27 @@ class DailyLogPage extends Component {
         this.props.dispatch({type: 'SAVE_NOTES', payload: dataToSend});
     }
 
+    // when user clicks complete visit, visit_complete in database is changed from false to true,
+    // and user is sent to PreviousDetailPage.  Buttons and text box are disabled on this page for 
+    // if they come back here.
     handleCompleteVisit = () => {
         console.log('clicked', this.props.store.singleParkVisit.id);
-        this.props.dispatch({
-            type: 'VISIT_COMPLETE', 
-            payload: this.props.store.singleParkVisit.id,
-            history: this.props.history,
-            location: '/previousVisitDetail'
-        });
+        let accept = window.confirm(`Are you finished with your visit?  This will not allow you to edit the details anymore.`);
+        if (!accept) {
+            return;
+        }
+        // if user click yes, continue with complete visit function
+        else {
+            this.props.dispatch({
+                type: 'VISIT_COMPLETE', 
+                payload: this.props.store.singleParkVisit.id,
+                history: this.props.history,
+                location: '/previousVisitDetail'
+            });
+        }
     }
 
+    // this section turns te date text from the database into a readable date format
     renderDate = (date) => {
         console.log('date', date);
         let month = date.slice(5, 7);
@@ -168,15 +184,17 @@ class DailyLogPage extends Component {
         return (
             <div className="center">
                 <h2>Daily Log</h2>
-                    {this.props.store.singleParkVisit.date && 
-                        <>
+                {/* park name and date */}
+                {this.props.store.singleParkVisit.date && 
+                    <>
                         <h3>{this.props.store.singleParkVisit.name}
                         <br/>
                         {this.renderDate(this.props.store.singleParkVisit.date)}</h3>
-                        </>
-                    }
+                    </>
+                }
                 <ul>
                     {/* put list of attractions here */}
+                    {/* if park visit is complete, notes box is read only and button is disabled */}
                     {this.props.store.visitAttractions.map((attraction) => {
                         return(
                             <li key={attraction.id} className="logList">
@@ -190,6 +208,7 @@ class DailyLogPage extends Component {
                                 {!this.props.store.singleParkVisit.visit_complete ?
                                     <button onClick={()=>this.handleIncrementClick(attraction.id)} className="wordButton">Experienced Today</button>
                                 :
+                                    // rendered disabled if visit complete
                                     <button className="disabledBtn wordButton">Experienced Today</button>
                                 }   
                             {this.renderQuantity(attraction.id)}
@@ -199,6 +218,7 @@ class DailyLogPage extends Component {
                 </ul>
                 <label htmlFor="notesBox">Additional Notes:</label>
                 <br/>
+                {/* if park visit is complete, notes box is read only and button is disabled */}
                 {!this.props.store.singleParkVisit.visit_complete ?
                     <>
                         <textarea id="notesBox" 
