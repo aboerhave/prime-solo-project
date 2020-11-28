@@ -39,6 +39,7 @@ function* loginUser(action) {
 
 // worker Saga: will be fired on "LOGOUT" actions
 function* logoutUser(action) {
+    console.log('action in logoutUser fn', action);
     try {
         const config = {
             headers: { 'Content-Type': 'application/json' },
@@ -59,6 +60,7 @@ function* logoutUser(action) {
     catch (error) {
         console.log('Error with user logout:', error);
     }
+    yield action.history.push('/');
 }
 
 function* loginSaga() {

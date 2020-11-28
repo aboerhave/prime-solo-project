@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function* addDate(action) {
     try {
+        console.log('addDate history received', action.history);
+        
         console.log('addDate action.payload', action.payload);
         
         const dateResponse = yield axios.post('/api/dates',  action.payload);

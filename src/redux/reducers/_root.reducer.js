@@ -11,7 +11,6 @@ import singleParkVisit from './single_park_visit.reducer';
 import visitAttractions from './visit_attractions.reducer';
 import attractionsQuantity from './attractions_quantity.reducer';
 import userVisits from './user_visits.reducer';
-import visitDetails from './visit_details.reducer';
 import notes from './notes.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -33,7 +32,6 @@ const rootReducer = combineReducers({
     visitAttractions,
     attractionsQuantity,
     userVisits,
-    visitDetails,
     notes,
 });
 

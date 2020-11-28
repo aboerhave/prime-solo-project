@@ -43,7 +43,7 @@ const Nav = (props) => {
                     </Link>
                     
                     {/* Show the logout button if the user is logged in */}
-                    <LogOutButton className="nav-link" />
+                    <LogOutButton className="nav-link" history={history}/>
 
                 </div>
             }
