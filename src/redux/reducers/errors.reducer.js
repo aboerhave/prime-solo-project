@@ -1,3 +1,7 @@
+// errorReducers for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains reducers with messages for login errors
+
 import { combineReducers } from 'redux';
 
 // loginMessage holds the string that will display

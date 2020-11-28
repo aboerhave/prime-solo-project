@@ -1,5 +1,11 @@
+// nav.scss file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains styles used for navigation section
+
+// import the index.scss file with color variables used
 @import '../../index.scss';
 
+// style for main title
 .nav-title {
     font-size: 24px;
     font-weight: 700;
@@ -8,6 +14,7 @@
     position: relative;
 }
 
+// if the user is logged in, the height includes all links
 .navOn {
     background-color: $primary;
     overflow: hidden;
@@ -15,6 +22,8 @@
     height: 120px;
 }
 
+// if the user is logged out, there is no nav bar and they only see the title,
+// because the login is on the middle of the screen
 .navOff {
     background-color: $primary;
     overflow: hidden;
@@ -22,6 +31,7 @@
     height: 75px;
 }
 
+// style for navigation links
 .nav-link {
     color: $secondary;
     background-color: $primary;
@@ -31,13 +41,10 @@
 
     /* these last two make the logout button in
     the nav bar look like another link */
-    border:none;
-    cursor: pointer;
-    outline:0;
+    border: none;
+    outline: 0;
     display: inline-block;
-    // width: 25%;
-    padding: 2px 18.8px;
-    font-family: fantasy;
+    padding: 2px 19px;
 }
 
 

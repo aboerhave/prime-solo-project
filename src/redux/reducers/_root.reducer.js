@@ -1,3 +1,8 @@
+// root reducer file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// this file imports and registers all the reducers in other files
+// It is imported in index.js as rootReducer
+
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
@@ -12,10 +17,6 @@ import visitAttractions from './visit_attractions.reducer';
 import attractionsQuantity from './attractions_quantity.reducer';
 import userVisits from './user_visits.reducer';
 import notes from './notes.reducer';
-
-// rootReducer is the primary reducer for our entire project
-// It bundles up all of the other reducers so our project can use them.
-// This is imported in index.js as rootSaga
 
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
