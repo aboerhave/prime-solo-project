@@ -30,7 +30,7 @@ class ParksPage extends Component {
                     <ul>
                         {this.props.store.parks.map((park) => {
                             return (
-                                <li key={park.id} >
+                                <li key={park.id} className="parkList">
                                     <Link to={`/attractions/${park.id}`} className="parkLink">
                                         
                                         <p >

@@ -109,7 +109,7 @@ li {
 
 .attrList {
     padding-bottom: 5px;
-    border-bottom: 1px solid black;   
+    border-bottom: 1px solid $fifth;   
     color: $fourth; 
 }
 
@@ -121,7 +121,7 @@ li {
 .logList {
     padding-top: 10px;
     padding-bottom: 15px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $fifth;
     color: $fourth;
 }
 
@@ -132,7 +132,7 @@ li {
 
 .savedVisitsList {
     padding-bottom: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $fifth;
     color: $fourth;
 }
 
@@ -179,4 +179,8 @@ ul {
 
 .saveNotesButton:active, .warningButton:active, .wordButton:active {
     transform: translateY(2px);
+}
+
+.parkList {
+    border-bottom: 1px solid $fifth;
 }
