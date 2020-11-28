@@ -1,9 +1,12 @@
+// favorites router file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains routes for getting list of attractions that are currently and previously
+// have been favorites, as well as posting a new favorite and toggling a favorite
+
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
-
-
 
 // this get route is for getting all previously saved favorites
 // for the current user that are currently saved as favorites

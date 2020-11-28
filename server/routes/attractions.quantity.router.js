@@ -1,3 +1,9 @@
+// attractions quantity router file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains routes for getting count of attractions experienced, adding
+// a new attraction completed and incrementing any attraction already experienced
+// at least once
+
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
@@ -30,7 +36,9 @@ router.get('/:parkVisitId', rejectUnauthenticated, (req, res) => {
 }); // end get route
 
 // post to add a new attraction that hasn't been ridden yet to the database
-// in visit_attractions table
+// in visit_attractions table.  It send back the park visit id if the visit id
+// and the user id match, and then the id is sent inside the post.  If a matching id
+// doesn't come back from the first query, the second query fails
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('stuff sent to attractionsQuantity post', req.body);
     
@@ -60,6 +68,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 }); // end post route
     
 // put route to increment the number of times the attraction has been ridden
+// The first query will check to make sure the park visit id is one for the correct user
+// and if it is, the attraction times_ridden will increase, otherwise it will fail.
 router.put('/', rejectUnauthenticated, (req, res) => {
     console.log('stuff send to attractionsQuantity put', req.body);
     

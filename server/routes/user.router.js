@@ -1,3 +1,8 @@
+// user router file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains routes for getting user details, posting a new user,
+// and posting a login or logout
+
 const express = require('express');
 const {
     rejectUnauthenticated,

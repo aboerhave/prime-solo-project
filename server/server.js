@@ -1,3 +1,7 @@
+// server file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// requires all files used for routing and uses them to redirect there for 
+// the intended routes
 
 const express = require('express');
 require('dotenv').config();
@@ -18,7 +22,6 @@ const visitRouter = require('./routes/park.visit.router');
 const visitAttractionsRouter = require('./routes/visit.attractions.router');
 const quantityRouter = require('./routes/attractions.quantity.router');
 const notesRouter = require('./routes/notes.router');
-
 
 // Body parser middleware
 app.use(bodyParser.json());

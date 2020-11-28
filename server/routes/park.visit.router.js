@@ -1,9 +1,12 @@
+// parks visit router file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains routes for getting details about a park visit, getting all saved visits,
+// deleting a visit and 'completing' a visit
+
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
-
-
 
 // GET route for getting one park that the visit is at
 router.get('/:id', rejectUnauthenticated, (req, res) => {
@@ -60,6 +63,7 @@ router.delete('/:visitId', rejectUnauthenticated, (req, res) => {
 
         console.log('parkVisitId', req.params.visitId);
         
+        // this query will delete the park visit entry
         let secondQueryText = `delete from park_visits
         where id = $1
         and user_id = $2
