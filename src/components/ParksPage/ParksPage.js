@@ -1,3 +1,8 @@
+// ParksPage component for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// This should be the first page the user is brought to when signed in,
+// and it will display all theme parks stored in the database
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
@@ -6,17 +11,12 @@ import { Link } from 'react-router-dom';
 class ParksPage extends Component {
 
     componentDidMount = () => {
-        // need to make get request to get data of list of parks here
+        // get request to get array of list of parks from database
         this.getParks();
     }
 
     getParks = () => {
         this.props.dispatch({type: 'GET_PARKS'});
-    }
-
-    getAttractions = (event, parkId) => {
-        console.log('clicked with parkId', parkId);
-        
     }
 
     render() {
@@ -26,6 +26,7 @@ class ParksPage extends Component {
                 <div className="center">
                     <h2>Parks</h2>
                     <h4>Tap a park name to see a list of experiences there</h4>
+                    {/* map through all parks in the parks reducer and display them on the screen as links */}
                     <ul>
                         {this.props.store.parks.map((park) => {
                             return (

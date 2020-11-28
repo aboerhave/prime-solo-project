@@ -1,3 +1,7 @@
+// attractions saga for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains the saga to get all the attractions at a desired theme park
+
 import {put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
 
@@ -8,6 +12,7 @@ function* getAttractions(action) {
         
         const attractionsResponse = yield axios.get(`/api/attractions/${action.payload}`);
         console.log('attractionsResponse.data', attractionsResponse.data);
+        // send the attractions to the attractions reducer to be saved
         yield put({type: 'SET_ATTRACTIONS', payload: attractionsResponse.data});
     }
     catch (error) {
@@ -15,6 +20,7 @@ function* getAttractions(action) {
     }
 }
 
+// watcher saga to watch for GET_ATTRACTIONS action type
 function* attractionsSaga() {
     console.log('in attractionsSaga');
     
