@@ -126,7 +126,7 @@ class DailyLogPage extends Component {
             }
             else {
                 return (
-                    <p>experience {attractionsQuantity} times today</p>
+                    <p>experienced {attractionsQuantity} times today</p>
                 )
             }
         }
