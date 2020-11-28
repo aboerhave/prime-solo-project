@@ -33,7 +33,7 @@ main {
     margin: 20px;
 }
 
-// alert style
+// alert style for errors with login or registration
 .alert {
     box-sizing: border-box;
     padding: 15px 10px;
@@ -55,6 +55,7 @@ main {
     padding: 5px;
     margin: 4px;
     border-radius: 6px;
+    font-family: fantasy;
 }
 
 // style for buttons that are orange and will make permanent changes to the database
@@ -104,7 +105,7 @@ li {
 // style for list on AttractionsPage component
 .attrList {
     padding-bottom: 5px;
-    border-bottom: 1px solid black;   
+    border-bottom: 1px solid $fifth;   
     color: $fourth; 
 }
 
@@ -118,7 +119,7 @@ li {
 .logList {
     padding-top: 10px;
     padding-bottom: 15px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $fifth;
     color: $fourth;
 }
 
@@ -131,7 +132,7 @@ li {
 // style for list on DailyLogPage componen
 .savedVisitsList {
     padding-bottom: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $fifth;
     color: $fourth;
 }
 
@@ -150,7 +151,7 @@ ul {
 
 // style for date input box
 #visitDate {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: fantasy;
     margin-top: 12px;
     font-size: 14px;
 }

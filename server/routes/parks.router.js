@@ -1,3 +1,7 @@
+// parks router file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains routes for getting all parks and getting one park after selected
+
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');

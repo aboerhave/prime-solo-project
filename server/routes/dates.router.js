@@ -1,9 +1,11 @@
+// dates router file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains route for posting a new park visit for the date that the user selects
+
 const express = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
-
-
 
 // this post route adds a new date to the database with user id, 
 // and park id for park visited into park_visits table
