@@ -88,6 +88,7 @@ main {
     padding: 5px;
     margin: 4px;
     border-radius: 6px;
+    font-family: fantasy;
 }
 
 .heartButton {
@@ -146,7 +147,7 @@ ul {
 }
 
 #visitDate {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: fantasy;
     margin-top: 12px;
     font-size: 14px;
 }
@@ -158,6 +159,7 @@ ul {
     padding: 5px;
     margin: 4px;
     border-radius: 6px;
+    font-family: fantasy;
 }
 
 .parkLink {
@@ -183,4 +185,8 @@ ul {
 
 .parkList {
     border-bottom: 1px solid $fifth;
+}
+
+.parkList:last-child {
+    border-bottom: none;
 }
