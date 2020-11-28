@@ -1,3 +1,9 @@
+// app.scss file for Solo Project App for Prime Academy
+// created by Adam Boerhave, November 2020
+// contains styles used throughout app
+// other styles are found in nav.scss file for the navigation section
+
+// import index.scss file to use color variables stored there
 @import '../../index.scss';
 
 html,
@@ -6,29 +12,28 @@ body,
     height: 100%;
 }
 
+// style for entire page to select font and remove margin from navigation section
 body {
-    // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-family: fantasy;
     margin: 0px;
 }
 
-img {
-    display: inline-block;
-    max-width: 100%;
-}
-
-/* --------------------------------------------------------------------------------
-Container
--------------------------------------------------------------------------------- */
-
+// container spacing
 .container {
     padding: 15px;
 }
 
-/* --------------------------------------------------------------------------------
-Alert
--------------------------------------------------------------------------------- */
+// move everything to the center in almost all of the app
+.center {
+    text-align: center;
+}
 
+// leave space on edges below navigation bar
+main {
+    margin: 20px;
+}
+
+// alert style
 .alert {
     box-sizing: border-box;
     padding: 15px 10px;
@@ -40,47 +45,9 @@ Alert
     font-size: 0.8rem;
 }
 
-/* --------------------------------------------------------------------------------
-Form Treatment
--------------------------------------------------------------------------------- */
+///////////////////// BUTTONS //////////////////////////
 
-.formPanel {
-    box-sizing: border-box;
-    width: 400px;
-    max-width: 100%;
-    padding: 25px;
-    margin: 0 auto 20px;
-    background-color: #efefef;
-    border-radius: 3px;
-    // box-shadow: 0 1px 2px rgb(0, 0, 0);
-    label {
-        display: inline-block;
-        width: 80px;
-    }
-    h2 {
-        margin-top: 0;
-    }
-}
-
-input {
-    margin: 5px;
-    margin-bottom: 10px;
-}
-
-
-/* ------------------------------------------------------------- */
-.center {
-    text-align: center;
-}
-main {
-    margin: 20px;
-}
-
-.disabledBtn {
-    opacity: .6;
-    cursor: not-allowed;
-}
-
+// style for buttons with words
 .wordButton {
     background-color: $secondary;
     color: $third;
@@ -90,67 +57,7 @@ main {
     border-radius: 6px;
 }
 
-.heartButton {
-    font-size: .8em;
-    height: 40px;
-    width: 40px;
-    border: none;
-    background-color: transparent;
-}
-
-.heart {
-    margin: auto;
-    font-size: 20px;
-}
-
-li {
-    list-style-type: none;
-}
-
-.attrList {
-    padding-bottom: 5px;
-    border-bottom: 1px solid black;   
-    color: $fourth; 
-}
-
-.attrList:last-child {
-    padding-bottom: 5px;
-    border-bottom: none;    
-}
-
-.logList {
-    padding-top: 10px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid black;
-    color: $fourth;
-}
-
-.logList:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-.savedVisitsList {
-    padding-bottom: 20px;
-    border-bottom: 1px solid black;
-    color: $fourth;
-}
-
-.savedVisitsList:last-child {
-    padding-bottom: 10px;
-    border-bottom: none;
-}
-
-ul {
-    padding: 0;
-}
-
-#visitDate {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-top: 12px;
-    font-size: 14px;
-}
-
+// style for buttons that are orange and will make permanent changes to the database
 .warningButton {
     background-color: $primary;
     color: $secondary;
@@ -160,11 +67,95 @@ ul {
     border-radius: 6px;
 }
 
-.parkLink {
-    text-decoration: none;
+// style for button to save the notes typed
+.saveNotesButton {
+    display: block;
+    margin: 10px auto;
+}
+
+// style for button containing the heart to make 
+// them look like buttons without the background
+.heartButton {
+    font-size: .8em;
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: transparent;
+}
+
+// style for hearts inside of buttons 
+.heart {
+    font-size: 20px;
+}
+
+// make the buttons less opaque when the visit has been complete
+.disabledBtn {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+/////////////////////// LISTS //////////////////////////
+
+// remove dots from list items
+li {
+    list-style-type: none;
+}
+
+// style for list on AttractionsPage component
+.attrList {
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;   
+    color: $fourth; 
+}
+
+// remove border line after last list item
+.attrList:last-child {
+    padding-bottom: 5px;
+    border-bottom: none;    
+}
+
+// style for list on DailyLogPage component
+.logList {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid black;
     color: $fourth;
 }
 
+// remove border line after last list item
+.logList:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+// style for list on DailyLogPage componen
+.savedVisitsList {
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    color: $fourth;
+}
+
+// remove border line after last list item
+.savedVisitsList:last-child {
+    padding-bottom: 10px;
+    border-bottom: none;
+}
+
+// removed padding from ul to take away extra space on the left
+ul {
+    padding: 0;
+}
+
+//////////////////// INPUTS //////////////////////////////
+
+// style for date input box
+#visitDate {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+// spacing for notes input box
 #notesBox {
     display: block;
     width: 90%;
@@ -172,7 +163,34 @@ ul {
     margin: 10px auto;
 }
 
-.saveNotesButton {
-    display: block;
-    margin: 10px auto;
+// form style for registration and login form
+.formPanel {
+    box-sizing: border-box;
+    width: 400px;
+    max-width: 100%;
+    padding: 25px;
+    margin: 0 auto 20px;
+    background-color: #efefef;
+    border-radius: 3px;
+    label {
+        display: inline-block;
+        width: 80px;
+    }
+    h2 {
+        margin-top: 0;
+    }
+}
+
+// input spacing for registration and login box
+input {
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+/////////////////////// OTHERS ///////////////////////////
+
+// style for links that are park names
+.parkLink {
+    text-decoration: none;
+    color: $fourth;
 }
