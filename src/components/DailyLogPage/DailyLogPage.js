@@ -19,6 +19,8 @@ class DailyLogPage extends Component {
     };
 
     componentDidMount = () => {
+        // get the notes the user has alread saved
+        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
         // get all park visit details for this visit being edited
         this.props.dispatch({type: 'GET_VISIT_PARK', payload: this.props.match.params.id})
         // get user's saved favorites
@@ -29,11 +31,9 @@ class DailyLogPage extends Component {
         this.props.dispatch({type: 'GET_ATTRACTIONS_FOR_PARK_VISIT', payload: this.props.match.params.id});
         // get the number of times the user has already done any of these attractions
         this.props.dispatch({type: 'GET_ATTRACTIONS_QUANTITY', payload: this.props.match.params.id});
-        // get the notes the user has alread saved
-        this.props.dispatch({type: 'GET_NOTES', payload: this.props.match.params.id});
     }
 
-    // ???????????????????????????????????????????????????????????????????????????????????
+    // this part helps to make sure the notes get updated correctly
     componentDidUpdate = () => {
         if (this.props.store.singleVisit !== this.state.logId) {
             console.log('state', this.state);
