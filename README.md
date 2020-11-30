@@ -13,28 +13,28 @@ There were a fair number of challenges to get the app completed.  One of the big
 ## Screen Shots
 
 Log In Page
-![Screen Shot 1][public/images/screen1.png]
+![Screen Shot 1](public/images/1_Log_In_Page.png)
 
 Registration Page
-![Screen Shot 2][public/images/2 Registration Page.png]
+![Screen Shot 2](public/images/2_Registration_Page.png)
 
 Parks Page
-![Screen Shot 3][public/images/3 Parks Page : Home Page.png]
+![Screen Shot 3](public/images/3_Parks_Page_:_Home_Page.png)
 
 Attractions Page
-![Screen Shot 4][public/images/4 Attractions Page.png]
+![Screen Shot 4](public/images/4_Attractions_Page.png)
 
 Date Selection Page
-![Screen Shot 5][public/images/5 Date Selection Page.png]
+![Screen Shot 5](public/images/5_Date_Selection_Page.png)
 
 Daily Log Page
-![Screen Shot 6][public/images/6 Daily Log Page.png]
+![Screen Shot 6](public/images/6_Daily_Log_Page.png)
 
 Saved Visits Page
-![Screen Shot 7][public/images/7 Saved Visits Page.png]
+![Screen Shot 7](public/images/7_Saved_Visits_Page.png)
 
 Previous Visit Detail Page
-![Screen Shot 8][public/images/8 Previous Visit Detail Page.png]
+![Screen Shot 8](public/images/8_Previous_Visit_Detail_Page.png)
 
 
 
