@@ -44,27 +44,29 @@ class SavedVisitsPage extends Component {
         return (
             <div className="center">
                 <h2>Saved Visits</h2>
-                {/* list of visits */}
+                {/* once visits are in the reducer, display them on screen */}
+                {this.props.store.userVisits[0] &&
                 <ul>
-                    {this.props.store.userVisits.map((visit) => {
-                        let fullDate = visit.date.slice(0,10)
-                        let displayDate = fullDate.slice(5,7) + '/' + fullDate.slice(8,11) + '/' + fullDate.slice(0, 4);
-                        return (
-                            <li key = {visit.id} className="savedVisitsList">
-                                <h4>{displayDate} - {visit.name}<br/>
-                                {visit.city}, {visit.state}</h4>
-                                {/* if the visit_complete boolean is false, show the edit visit button, otherwise
-                                show the see visit details button */}
-                                {visit.visit_complete ? 
-                                <button onClick={()=>this.handleDisplay(visit.id)} className="wordButton">See Visit Details</button>
-                                :
-                                <button onClick={()=>this.handleEdit(visit.id)} className="wordButton">Edit Visit</button>
-                                }
-                                <button onClick={()=>this.handleDelete(visit.id)} className="warningButton">Delete Entry</button>
-                            </li>
-                        )
-                    })}
+                        {this.props.store.userVisits.map((visit) => {
+                            let fullDate = visit.date.slice(0,10)
+                            let displayDate = fullDate.slice(5,7) + '/' + fullDate.slice(8,11) + '/' + fullDate.slice(0, 4);
+                            return (
+                                <li key = {visit.id} className="savedVisitsList">
+                                    <h4>{displayDate} - {visit.name}<br/>
+                                    {visit.city}, {visit.state}</h4>
+                                    {/* if the visit_complete boolean is false, show the edit visit button, otherwise
+                                    show the see visit details button */}
+                                    {visit.visit_complete ? 
+                                    <button onClick={()=>this.handleDisplay(visit.id)} className="wordButton">See Visit Details</button>
+                                    :
+                                    <button onClick={()=>this.handleEdit(visit.id)} className="wordButton">Edit Visit</button>
+                                    }
+                                    <button onClick={()=>this.handleDelete(visit.id)} className="warningButton">Delete Entry</button>
+                                </li>
+                            )
+                        })}
                 </ul>
+                }
             </div>
         );
     }
