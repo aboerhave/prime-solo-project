@@ -13,7 +13,7 @@ There were a fair number of challenges to get the app completed.  One of the big
 ## Screen Shots
 
 Log In Page
-![Screen Shot 1][public/images/1 Log In Page.png]
+![Screen Shot 1][public/1_Log_In_Page.png]
 
 Registration Page
 ![Screen Shot 2][public/images/2 Registration Page.png]
