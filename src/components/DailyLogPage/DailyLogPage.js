@@ -121,12 +121,12 @@ class DailyLogPage extends Component {
             // to multiple times when greater than 1
             if (attractionsQuantity == 1) {
                 return (
-                    <p>experienced 1 time today</p>
+                    <p>Experienced 1 time today</p>
                 )
             }
             else {
                 return (
-                    <p>experienced {attractionsQuantity} times today</p>
+                    <p>Experienced {attractionsQuantity} times today</p>
                 )
             }
         }
