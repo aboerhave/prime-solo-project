@@ -13,7 +13,7 @@ There were a fair number of challenges to get the app completed.  One of the big
 ## Screen Shots
 
 Log In Page
-![Screen Shot 1][public//Users/adamboerhave/Documents/Prime/Solo Project/prime-solo-project/public/images/LogInPage1.png]
+![Screen Shot 1][public/images/screen1.png]
 
 Registration Page
 ![Screen Shot 2][public/images/2 Registration Page.png]
