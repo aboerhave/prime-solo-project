@@ -12,19 +12,22 @@ create table "user" (
 
 select * from "users";
 
+-- this section creates the parks database table
 create table parks (
 	id serial primary key,
 	name varchar (255) not null,
 	city varchar (255),
 	state varchar (255)
-	);
+);
 	
+-- this section creates the attractions database table
 create table attractions (
 	id serial primary key,
 	name varchar (255), 
 	park_id int references parks
 );
 
+-- this section creates the favorites database table
 create table favorites (
 	id serial primary key,
 	user_id int references users,
@@ -32,6 +35,7 @@ create table favorites (
 	favorite_status boolean
 );
 	
+-- this section creates the park_visits database junction table
 create table park_visits (	
 	id serial primary key,
 	user_id int references users,
@@ -41,6 +45,7 @@ create table park_visits (
     park_id int references parks
 );
 
+-- this section creates the visits_attractions database junction table
 create table visits_attractions (
 	id serial primary key,
 	park_visit_id int references park_visits,
@@ -48,7 +53,7 @@ create table visits_attractions (
 	times_ridden int default 1
 );
 
-
+-- initial parks inserted into parks table
 insert into parks (name, city, state)
 values ('Cedar Point', 'Sandusky', 'Ohio'),
 ('Disney''s Animal Kingdom', 'Orlando', 'Florida'),
@@ -60,6 +65,8 @@ values ('Cedar Point', 'Sandusky', 'Ohio'),
 ('Valleyfair', 'Shakopee', 'Minnesota')
 ;
 
+-- initial attractions inserted attractions table for Valleyfair, 
+-- Walt Disney World Resort, Universal Orlando, and Cedar Point
 insert into attractions (name, park_id)
 values ('Wild Thing', 8),
 ('Corkscrew', 8),
@@ -183,10 +190,12 @@ values ('Wild Thing', 8),
 ('Walt Disney Presents', 3)
 ;
 
+-- new parks added to parks database for Disneyland
 insert into parks (name, city, state)
 values ('Disneyland Park', 'Anaheim', 'California'),
 ('Disney California Adventure Park', 'Anaheim', 'California');
 
+-- attractions added for Disneyland
 insert into attractions (name, park_id)
 values ('Alice in Wonderland', 9),
 ('Astro Orbiter', 9),
@@ -265,9 +274,11 @@ values ('Alice in Wonderland', 9),
 ('Turtle Talk with Crush', 10),
 ('Walt Disney Imagineering Blue Sky Cellar', 10);
 
+-- Magic Mountain park added to parks database table
 insert into parks (name, city, state)
 values ('Six Flags Magic Mountain', 'Valencia', 'California');
 
+-- Magic Mountain attractions added to attractions table
 insert into attractions (name, park_id)
 values ('Apocalypse', 11),
 ('BATMAN™ The Ride', 11),
@@ -307,9 +318,11 @@ values ('Apocalypse', 11),
 ('Tweety''s Escape', 11),
 ('Twisted Colossus', 11);
 
+-- Knott's Berry Farm added to parks table
 insert into parks (name, city, state)
 values ('Knott''s Berry Farm', 'Buena Park', 'California');
 
+-- Knott's Berry Farm attractions added to attractions table
 insert into attractions (name, park_id)
 values ('Coast Rider', 12),
 ('GhostRider', 12),
