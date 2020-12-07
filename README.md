@@ -78,7 +78,7 @@ In the terminal, enter the command 'npm run server'.  Open a new terminal window
 
 ## Built With
 
-- Redux-Sage
+- Redux-Saga
 - React
 - SCSS
 - Node
