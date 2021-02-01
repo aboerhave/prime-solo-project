@@ -90,7 +90,6 @@ class DateSelection extends Component {
     render() {
         return (
           <div className="center">
-              {JSON.stringify(this.state)}
                 <h2>Daily Log</h2>
                 <h2>Select a date for a visit to {this.props.store.singlePark.name}</h2>
                 <button className="wordButton" onClick={this.handleTodayClick}>Select Today's Date</button>
