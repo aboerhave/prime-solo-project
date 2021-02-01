@@ -73,13 +73,31 @@ class DateSelection extends Component {
         }        
     }
 
+    // This function gets the current date and saves it in local state if the 
+    // 'Select Today's Date' Button is clicked
+    handleTodayClick = () => {
+      let todaysDate = new Date();
+      console.log('todaysDate', todaysDate);
+
+      let today = new Date(todaysDate.getTime() - (todaysDate.getTimezoneOffset() * 60000)).toJSON().slice(0,10);
+      console.log('today', today);
+
+      this.setState({
+        date: today
+      })
+    }
+
     render() {
         return (
             <div className="center">
                 <h2>Daily Log</h2>
                 <h2>Select a date for a visit to {this.props.store.singlePark.name}</h2>
-                <label for="parkVisitDate">Park Visit Date (MM/DD/YYYY):</label>
-                <input onChange={(event) => this.handleChange(event)} type="date" id="visitDate" name="parkVisitDate" />
+                <button className="wordButton" onClick={this.handleTodayClick}>Select Today's Date</button>
+                <br/>
+                <p>------ &nbsp;&nbsp;&nbsp;&nbsp;  OR &nbsp;&nbsp;&nbsp;&nbsp;  ------</p>
+                {/* <label for="parkVisitDate">Park Visit Date (MM/DD/YYYY):</label> */}
+                <input onChange={(event) => this.handleChange(event)} type="date" id="visitDate" name="parkVisitDate" value = {this.state.date} />
+                <br/>
                 <button className="wordButton" onClick={this.handleSubmit}>
                     Begin Record for this Date at {this.props.store.singlePark.name}
                 </button>
